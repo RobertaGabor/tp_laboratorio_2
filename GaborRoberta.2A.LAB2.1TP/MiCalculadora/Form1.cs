@@ -28,8 +28,16 @@ namespace MiCalculadora
             string txtUno = this.txtBoxNum1.Text;
             string txtDos = this.txtBoxNum2.Text;
             string op = this.cboBoxOperador.Text;
-            this.lblResultado.Text=Convert.ToString(FormCalculadora.Operar(txtUno, txtDos, op));
-            
+            string aux = Convert.ToString(FormCalculadora.Operar(txtUno, txtDos, op));
+            if(aux!="-1")
+            {
+                this.lblResultado.Text = aux;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un operador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+            }  
         }
 
         private static Double Operar(string num1,string num2,string operador)

@@ -63,7 +63,7 @@
             // 
             this.lblResultado.AutoSize = true;
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultado.Location = new System.Drawing.Point(306, 9);
+            this.lblResultado.Location = new System.Drawing.Point(168, 9);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(86, 31);
             this.lblResultado.TabIndex = 3;
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 246);
+            this.ClientSize = new System.Drawing.Size(435, 246);
             this.Controls.Add(this.cboBoxOperador);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnABinario);
@@ -149,7 +149,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(431, 285);
+            this.MinimumSize = new System.Drawing.Size(447, 285);
             this.Name = "FormCalculadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora de Roberta Gabor del curso 2A";
