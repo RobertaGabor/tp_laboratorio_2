@@ -30,13 +30,13 @@
         {
             this.txtBoxNum2 = new System.Windows.Forms.TextBox();
             this.txtBoxNum1 = new System.Windows.Forms.TextBox();
-            this.cboBoxOperador = new System.Windows.Forms.ComboBox();
             this.lblResultado = new System.Windows.Forms.Label();
             this.btnOperar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnADecimal = new System.Windows.Forms.Button();
             this.btnABinario = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.cboBoxOperador = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtBoxNum2
@@ -59,17 +59,6 @@
             this.txtBoxNum1.TabIndex = 1;
             this.txtBoxNum1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cboBoxOperador
-            // 
-            this.cboBoxOperador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBoxOperador.DropDownWidth = 79;
-            this.cboBoxOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboBoxOperador.FormattingEnabled = true;
-            this.cboBoxOperador.Location = new System.Drawing.Point(167, 61);
-            this.cboBoxOperador.Name = "cboBoxOperador";
-            this.cboBoxOperador.Size = new System.Drawing.Size(74, 46);
-            this.cboBoxOperador.TabIndex = 2;
-            // 
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
@@ -82,18 +71,19 @@
             // 
             // btnOperar
             // 
-            this.btnOperar.Location = new System.Drawing.Point(22, 117);
+            this.btnOperar.Location = new System.Drawing.Point(22, 128);
             this.btnOperar.Name = "btnOperar";
-            this.btnOperar.Size = new System.Drawing.Size(115, 45);
+            this.btnOperar.Size = new System.Drawing.Size(115, 34);
             this.btnOperar.TabIndex = 4;
             this.btnOperar.Text = "Operar";
             this.btnOperar.UseVisualStyleBackColor = true;
+            this.btnOperar.Click += new System.EventHandler(this.btnOperar_Click);
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(277, 117);
+            this.btnCerrar.Location = new System.Drawing.Point(277, 128);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(115, 45);
+            this.btnCerrar.Size = new System.Drawing.Size(115, 34);
             this.btnCerrar.TabIndex = 6;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -119,25 +109,41 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(160, 117);
+            this.btnLimpiar.Location = new System.Drawing.Point(160, 128);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(98, 45);
+            this.btnLimpiar.Size = new System.Drawing.Size(98, 34);
             this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // cboBoxOperador
+            // 
+            this.cboBoxOperador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBoxOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBoxOperador.FormattingEnabled = true;
+            this.cboBoxOperador.Items.AddRange(new object[] {
+            "+",
+            "-",
+            "*",
+            "/"});
+            this.cboBoxOperador.Location = new System.Drawing.Point(174, 57);
+            this.cboBoxOperador.Name = "cboBoxOperador";
+            this.cboBoxOperador.Size = new System.Drawing.Size(70, 46);
+            this.cboBoxOperador.TabIndex = 2;
             // 
             // FormCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 246);
+            this.Controls.Add(this.cboBoxOperador);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnABinario);
             this.Controls.Add(this.btnADecimal);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnOperar);
             this.Controls.Add(this.lblResultado);
-            this.Controls.Add(this.cboBoxOperador);
             this.Controls.Add(this.txtBoxNum1);
             this.Controls.Add(this.txtBoxNum2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -156,13 +162,13 @@
 
         private System.Windows.Forms.TextBox txtBoxNum2;
         private System.Windows.Forms.TextBox txtBoxNum1;
-        private System.Windows.Forms.ComboBox cboBoxOperador;
         private System.Windows.Forms.Label lblResultado;
         private System.Windows.Forms.Button btnOperar;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnADecimal;
         private System.Windows.Forms.Button btnABinario;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ComboBox cboBoxOperador;
     }
 }
 

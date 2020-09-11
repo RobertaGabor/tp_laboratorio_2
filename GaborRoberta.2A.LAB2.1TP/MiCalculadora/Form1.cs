@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
 
 namespace MiCalculadora
 {
@@ -21,5 +22,33 @@ namespace MiCalculadora
         {
             this.Close();
         }
+
+        private void btnOperar_Click(object sender, EventArgs e)
+        {
+            string txtUno = this.txtBoxNum1.Text;
+            string txtDos = this.txtBoxNum2.Text;
+            string op = this.cboBoxOperador.Text;
+            this.lblResultado.Text=Convert.ToString(FormCalculadora.Operar(txtUno, txtDos, op));
+            
+        }
+
+        private static Double Operar(string num1,string num2,string operador)
+        {
+            double retorno;
+            Numero numeroUno = new Numero(num1);
+            Numero numeroDos = new Numero(num2);
+            retorno = Calculadora.Operar(numeroUno, numeroDos, operador);
+            return retorno;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtBoxNum2.Clear();
+            this.txtBoxNum1.Clear();
+            this.cboBoxOperador.Items.Clear();
+            /*limpiar label*/
+
+        }
+
     }
 }
