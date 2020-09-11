@@ -53,9 +53,8 @@ namespace MiCalculadora
         {
             this.txtBoxNum2.Clear();
             this.txtBoxNum1.Clear();
-            this.cboBoxOperador.Items.Clear();
-            /*limpiar label*/
-
+            this.cboBoxOperador.SelectedIndex = -1;
+            this.lblResultado.Text = "";
         }
 
     }
