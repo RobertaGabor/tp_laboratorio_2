@@ -27,9 +27,12 @@ namespace MainConsolaDePrueba
             string decimale;
             decimale=ejemplo.BinarioDecimal("10110");
             Console.WriteLine(decimale);
-
+            
             decimale = ejemplo.DecimalBinario(22);
             Console.WriteLine(decimale);
+
+            Numero ejemplo2 = new Numero();
+            Calculadora.Operar(ejemplo, ejemplo2, "*");
 
             Console.ReadKey(true);
         }

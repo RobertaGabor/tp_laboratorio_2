@@ -20,14 +20,27 @@ namespace Entidades
 
         public static double Operar(Numero num1, Numero num2, string operador)
         {
+            char x = char.Parse(operador);
+            char operadorValido = char.Parse(Calculadora.ValidarOperador(x));
+            double respuesta=0;
             
-
-
-            /*EN PROCESO*/
             
-            return 12;
+            switch(operadorValido)
+            {
+                case '+':
+                    respuesta = num1 + num2;
+                    break;
+                case '-':
+                    respuesta = num1 - num2;
+                    break;
+                case '*':
+                    respuesta = num1 * num2;
+                    break;
+                case '/':
+                    respuesta = num1 / num2;
+                    break;
+            }
+            return respuesta;
         }
-
-
     }
 }

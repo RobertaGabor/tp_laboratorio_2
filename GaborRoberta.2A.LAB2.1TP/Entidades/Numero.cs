@@ -27,17 +27,37 @@ namespace Entidades
         }
 
         /*setter*/
-        private Double valorIngresado;
 
         public string SetNumero
         {
             set 
             {
-                valorIngresado = this.ValidarNumero(value);
+                this.numero = this.ValidarNumero(value);
             }
         }
+        
+        /*sobrecarga de operadores*/
+        public static Double operator +(Numero num1,Numero num2)
+        {
+            return num1.numero + num2.numero;
+        }
 
-
+        public static Double operator -(Numero num1, Numero num2)
+        {
+            return num1.numero - num2.numero;
+        }
+        public static Double operator *(Numero num1, Numero num2)
+        {
+            return num1.numero * num2.numero;
+        }
+        public static Double operator /(Numero num1, Numero num2)
+        {
+            if(num2.numero!=0)
+            {
+                return num1.numero/num2.numero;
+            }
+            return double.MinValue;
+        }
 
         /*metodos*/
         private double ValidarNumero(string strNumero)
