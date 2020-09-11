@@ -55,12 +55,46 @@ namespace Entidades
             bool retorno = true;
             for(int i=0;i<binario.Length;i++)
             {
-                if(binario[i]!=1&&binario[i]!=0)
+                if(binario[i]!='1'&&binario[i]!='0')/*los numeros hay que leerlos como char*/
                 {
                     retorno = false;
                     break;
                 }
             }
+            return retorno;
+        }
+
+
+        public string BinarioDecimal(string binario)
+        {
+            string retorno = "Valor inválido";
+
+            if (this.EsBinario(binario))
+            {
+                Double parteEntera = 0;
+                string parteEnteraString;
+                Double potenciado;
+                Int32 contadorIndiceInverso = binario.Length-1;
+
+                for (int s = 0; s < binario.Length; s++)
+                {
+                    if (binario[s] == '0')
+                    {
+                        parteEntera += 0;
+                    }
+                    else if (binario[s] == '1')
+                    {
+                        potenciado = Math.Pow(2, contadorIndiceInverso);
+                        parteEntera += potenciado;
+                    }
+                    contadorIndiceInverso--;
+                }
+
+                parteEnteraString = Convert.ToString(parteEntera);
+                return parteEnteraString;
+
+            }
+
             return retorno;
         }
     }
