@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    static class Calculadora
+    public static class Calculadora
     {
         private static string ValidarOperador(char operador)
         {
@@ -23,7 +23,7 @@ namespace Entidades
             char op = Convert.ToChar(operador);
             operador = Calculadora.ValidarOperador(op);
             Console.WriteLine(operador);
-
+            /*EN PROCESO*/
             return 12;
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 
 
@@ -12,7 +13,7 @@ namespace MainConsolaDePrueba
     {
         static void Main(string[] args)
         {
-            
+            //Calculadora.Operar(3, 4, "*");
         }
     }
 }
