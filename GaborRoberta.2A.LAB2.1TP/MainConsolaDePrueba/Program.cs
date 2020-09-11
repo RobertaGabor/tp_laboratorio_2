@@ -13,14 +13,22 @@ namespace MainConsolaDePrueba
     {
         static void Main(string[] args)
         {
-            //Calculadora.Operar(3, 4, "*");
-            double num = 34.8;
+            //Numero ejemplo3 = new Numero();
+            //Numero ejemplo4 = new Numero();
+
+            //Calculadora.Operar(ejemplo3,ejemplo4, "23+*");
+
+
+            double num = 0134.8;
             num = Math.Round(num);
             Console.WriteLine(num);
 
             Numero ejemplo = new Numero();
             string decimale;
-            decimale=ejemplo.BinarioDecimal("11");/*ver que pasa si esta en blanco*/
+            decimale=ejemplo.BinarioDecimal("10110");
+            Console.WriteLine(decimale);
+
+            decimale = ejemplo.DecimalBinario(22);
             Console.WriteLine(decimale);
 
             Console.ReadKey(true);

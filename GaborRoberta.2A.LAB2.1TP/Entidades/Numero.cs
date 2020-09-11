@@ -65,11 +65,11 @@ namespace Entidades
         }
 
 
-        public string BinarioDecimal(string binario)
+        public string BinarioDecimal(string binario)/*CONSIDERAR SI ESTA EN BLANCO*/
         {
             string retorno = "Valor inválido";
 
-            if (this.EsBinario(binario))
+            if (this.EsBinario(binario)&&!String.IsNullOrEmpty(binario))
             {
                 Double parteEntera = 0;
                 string parteEnteraString;
@@ -96,6 +96,51 @@ namespace Entidades
             }
 
             return retorno;
+        }
+
+
+        public string DecimalBinario(double numero)
+        {
+            string retorno = "Valor inválido";
+            numero = Math.Round(numero);
+            string stringBinario="";
+
+            Int32 lenghtEnteroBinario;
+            string enteroBinarioAlReves = "";
+
+            if(numero>0)
+            {
+                while(numero!=0)
+                {
+                    if (numero % 2 == 0)
+                    {
+                        numero = numero / 2;
+                        stringBinario += "0";
+                    }
+                    else
+                    {
+                        numero = (numero - 1) / 2;
+                        stringBinario += "1";
+                    }
+                }
+
+
+                lenghtEnteroBinario = stringBinario.Length;
+
+                for (int b = lenghtEnteroBinario - 1; b >= 0; b--)
+                {
+                    enteroBinarioAlReves += stringBinario[b];
+                }
+                
+               return enteroBinarioAlReves;
+            }
+            else if(numero==0)
+            {
+                return "0";
+            }
+
+            return retorno;
+  
         }
     }
 }
