@@ -25,6 +25,7 @@ namespace MiCalculadora
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
+            this.lblResultado.Text = "";
             string txtUno = this.txtBoxNum1.Text;
             string txtDos = this.txtBoxNum2.Text;
             string op = this.cboBoxOperador.Text;
@@ -57,5 +58,28 @@ namespace MiCalculadora
             this.lblResultado.Text = "";
         }
 
+        private void btnConvertirABinario_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty((this.lblResultado.Text))==false)
+            {
+                Double lblActive = double.Parse(this.lblResultado.Text);
+                Numero objUno = new Numero();
+                string aux = objUno.DecimalBinario(lblActive);
+                if(aux!="Valor inválido")
+                {
+                    this.lblResultado.Text = aux;
+                }
+                else
+                {
+                    MessageBox.Show("Solo se podran convertir numeros enteros positivos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay valor a convertir", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+        }
     }
 }

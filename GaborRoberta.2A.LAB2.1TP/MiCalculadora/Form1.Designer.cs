@@ -42,10 +42,10 @@
             // txtBoxNum2
             // 
             this.txtBoxNum2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxNum2.Location = new System.Drawing.Point(277, 51);
+            this.txtBoxNum2.Location = new System.Drawing.Point(250, 51);
             this.txtBoxNum2.Multiline = true;
             this.txtBoxNum2.Name = "txtBoxNum2";
-            this.txtBoxNum2.Size = new System.Drawing.Size(115, 56);
+            this.txtBoxNum2.Size = new System.Drawing.Size(142, 56);
             this.txtBoxNum2.TabIndex = 3;
             this.txtBoxNum2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -55,7 +55,7 @@
             this.txtBoxNum1.Location = new System.Drawing.Point(22, 51);
             this.txtBoxNum1.Multiline = true;
             this.txtBoxNum1.Name = "txtBoxNum1";
-            this.txtBoxNum1.Size = new System.Drawing.Size(115, 56);
+            this.txtBoxNum1.Size = new System.Drawing.Size(146, 56);
             this.txtBoxNum1.TabIndex = 1;
             this.txtBoxNum1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -65,9 +65,8 @@
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultado.Location = new System.Drawing.Point(168, 9);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(86, 31);
+            this.lblResultado.Size = new System.Drawing.Size(0, 31);
             this.lblResultado.TabIndex = 3;
-            this.lblResultado.Text = "label1";
             // 
             // btnOperar
             // 
@@ -106,6 +105,7 @@
             this.btnABinario.TabIndex = 7;
             this.btnABinario.Text = "Convertir a Binario";
             this.btnABinario.UseVisualStyleBackColor = true;
+            this.btnABinario.Click += new System.EventHandler(this.btnConvertirABinario_Click);
             // 
             // btnLimpiar
             // 

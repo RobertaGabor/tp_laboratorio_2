@@ -128,7 +128,7 @@ namespace Entidades
             Int32 lenghtEnteroBinario;
             string enteroBinarioAlReves = "";
 
-            if(numero>0)
+            if(numero>0&&numero<89999)
             {
                 while(numero!=0)
                 {
