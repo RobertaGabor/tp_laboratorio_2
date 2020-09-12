@@ -81,5 +81,20 @@ namespace MiCalculadora
 
 
         }
+
+        private void btnConvertirADecimal_Click(object sender, EventArgs e)
+        {
+            String lblActive = this.lblResultado.Text;
+            Numero objDos = new Numero();
+            string aux = objDos.BinarioDecimal(lblActive);
+            if (aux != "Valor inválido")
+            {
+                this.lblResultado.Text = aux;
+            }
+            else
+            {
+                MessageBox.Show("Solo se podran convertir numeros binarios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

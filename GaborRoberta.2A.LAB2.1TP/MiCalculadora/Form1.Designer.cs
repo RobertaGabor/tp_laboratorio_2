@@ -96,6 +96,7 @@
             this.btnADecimal.TabIndex = 8;
             this.btnADecimal.Text = "Convertir a Decimal";
             this.btnADecimal.UseVisualStyleBackColor = true;
+            this.btnADecimal.Click += new System.EventHandler(this.btnConvertirADecimal_Click);
             // 
             // btnABinario
             // 
