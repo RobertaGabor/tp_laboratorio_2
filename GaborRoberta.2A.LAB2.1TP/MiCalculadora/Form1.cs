@@ -79,7 +79,6 @@ namespace MiCalculadora
                 MessageBox.Show("No hay valor a convertir", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-
         }
 
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
