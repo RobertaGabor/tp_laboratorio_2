@@ -38,6 +38,8 @@
             this.btnABinario = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.cboBoxOperador = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtBoxNum2
@@ -143,12 +145,22 @@
             this.cboBoxOperador.Size = new System.Drawing.Size(70, 46);
             this.cboBoxOperador.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(399, 55);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(133, 214);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(529, 265);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cboBoxOperador);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnABinario);
@@ -168,6 +180,7 @@
             this.Name = "FormCalculadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora de Roberta Gabor del curso 2A";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +197,7 @@
         private System.Windows.Forms.Button btnABinario;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ComboBox cboBoxOperador;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
