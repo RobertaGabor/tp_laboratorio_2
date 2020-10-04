@@ -8,6 +8,12 @@ namespace Entidades
 {
     public class Suv: Vehiculo
     {
+        /// <summary>
+        /// Inicializa suv con constructor de base Vehiculo 
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <param name="chasis"></param>
+        /// <param name="color"></param>
         public Suv(EMarca marca, string chasis, ConsoleColor color)
             : base(chasis, marca, color)
         {

@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    /// <summary>
-    /// La clase Vehiculo no deberá permitir que se instancien elementos de este tipo.
-    /// </summary>
     public abstract class Vehiculo
     {
         private EMarca marca;
@@ -19,16 +16,12 @@ namespace Entidades
         /// ReadOnly: Retornará el tamaño
         /// </summary>
         protected abstract ETamanio Tamanio { get; }
-
-        public enum EMarca
-        {
-            Chevrolet, Ford, Renault, Toyota, BMW, Honda, HarleyDavidson
-        }
-        public enum ETamanio
-        {
-            Chico, Mediano, Grande
-        }
-
+        /// <summary>
+        /// Inicializa un vehiculo con chasis,marca y color
+        /// </summary>
+        /// <param name="chasis"></param>
+        /// <param name="marca"></param>
+        /// <param name="color"></param>
         public Vehiculo(string chasis, EMarca marca, ConsoleColor color)
         {
             this.marca = marca;
@@ -79,6 +72,15 @@ namespace Entidades
         public static bool operator !=(Vehiculo v1, Vehiculo v2)
         {
             return !(v1==v2);
+        }
+
+        public enum EMarca
+        {
+            Chevrolet, Ford, Renault, Toyota, BMW, Honda, HarleyDavidson
+        }
+        public enum ETamanio
+        {
+            Chico, Mediano, Grande
         }
 
     }

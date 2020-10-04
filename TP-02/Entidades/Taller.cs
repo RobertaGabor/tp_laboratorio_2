@@ -14,16 +14,19 @@ namespace Entidades
     {
         private List<Vehiculo> vehiculos;
         private int espacioDisponible;
-        public enum ETipo
-        {
-            Ciclomotor, Sedan, SUV, Todos
-        }
 
+        /// <summary>
+        /// constructor por defecto que inicializa la lista vehiculos
+        /// </summary>
         #region "Constructores"
         private Taller()
         {
             this.vehiculos = new List<Vehiculo>();
         }
+        /// <summary>
+        /// Constructor que inicializa la lista con el parametro espacio disponible
+        /// </summary>
+        /// <param name="espacioDisponible"></param>
         public Taller(int espacioDisponible):this()
         {
             this.espacioDisponible = espacioDisponible;
@@ -131,5 +134,11 @@ namespace Entidades
             return t;
         }
         #endregion
+        public enum ETipo
+        {
+            Ciclomotor, Sedan, SUV, Todos
+        }
+
+
     }
 }
