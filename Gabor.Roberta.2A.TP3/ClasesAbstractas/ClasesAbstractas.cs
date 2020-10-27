@@ -199,7 +199,7 @@ namespace ClasesAbstractas
 
         protected abstract string ParticiparEnClase();
 
-        public static bool operator ==(Universitario pg1, Universitario pg2)//TERMINAR!!!!
+        public static bool operator ==(Universitario pg1, Universitario pg2)
         {
             bool rtn = false;
             if(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI)

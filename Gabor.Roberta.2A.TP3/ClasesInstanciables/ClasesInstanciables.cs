@@ -16,7 +16,7 @@ namespace ClasesInstanciables
         #endregion
 
         #region constructores
-        public Alumno()
+        public Alumno()//DEFAULT SIN HACER
         {
         }
         public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases clasesQueToma, EEstadoCuenta estadoCuenta)
@@ -108,7 +108,7 @@ namespace ClasesInstanciables
         public void randomClase()
         {
             int numeroIndice;
-            numeroIndice = Profesor.random.Next(0, 3);   //CHEQUEAR SI ES ESTATICO O NO      
+            numeroIndice = Profesor.random.Next(0, 3);      
             this.clasesDelDia.Enqueue((Universidad.EClases)numeroIndice);
         }
         protected override string ParticiparEnClase()
@@ -154,6 +154,14 @@ namespace ClasesInstanciables
 
     public class Jornada 
     {
+        #region atributos
+        private List<Alumno> alumnos;
+        private Universidad.EClases clase;
+        private Profesor instructor;
+        #endregion
+
+
+
     }
 
 
@@ -161,7 +169,11 @@ namespace ClasesInstanciables
 
     public class Universidad
     {
-
+        #region atributos
+        private List<Alumno> alumnos;
+        private List<Profesor> profesores;
+        private List<Jornada> jornadas;
+        #endregion
 
 
 
