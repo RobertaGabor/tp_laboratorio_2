@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Excepciones;
 
 namespace ClasesAbstractas
 {
+    //--------------------------------------------------------PERSONA
     public abstract class Persona
     {
         #region atributos
@@ -22,7 +24,6 @@ namespace ClasesAbstractas
         {
         }
         public Persona(string nombre,string apellido,ENacionalidad nacionalidad)
-            :this()
         {
             this.nombre = nombre;
             this.apellido = apellido;
@@ -165,26 +166,65 @@ namespace ClasesAbstractas
    
     
     
-    
+    //-----------------------------UNIVERSITARIO
     
     
     
     public abstract class Universitario:Persona
     {
+        #region atributos
         private int legajo;
+        #endregion
 
-        /*• Método protegido y virtual MostrarDatos retornará todos los datos del Universitario.
-        • Método protegido y abstracto ParticiparEnClase.
-        • Dos Universitario serán iguales si y sólo si son del mismo Tipo y su Legajo o DNI son iguales.*/
-
+        #region constructores
         public Universitario(int legajo, string nombre,string apellido,string dni, ENacionalidad nacionalidad)
             :base(nombre,apellido,dni,nacionalidad)
         {
             this.legajo = legajo;
         }
-        public Universitario()//COMO HAGO DEFAULT???????????
+        public Universitario()//default???
         {
         }
+        #endregion
+
+        #region metodos
+        protected virtual string MostrarDatos()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(base.ToString());
+            sb.AppendLine($"LEGAJO: {this.legajo}");
+            return sb.ToString();
+        }
+
+        protected abstract string ParticiparEnClase();
+
+        public static bool operator ==(Universitario pg1, Universitario pg2)//TERMINAR!!!!
+        {
+            bool rtn = false;
+            if(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI)
+            {
+                rtn = true;
+            }
+            return rtn;
+        }
+
+        public static bool operator !=(Universitario pg1, Universitario pg2)
+        {
+            return !(pg1==pg2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool rtn = false;
+            if(obj is Universitario)
+            {
+                rtn = this == (Universitario)obj;
+            }
+
+            return rtn;
+        }
+        #endregion
 
     }
 }
