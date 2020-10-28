@@ -160,7 +160,67 @@ namespace ClasesInstanciables
         private Profesor instructor;
         #endregion
 
+        #region constructores
+        private Jornada()
+        {
+            alumnos = new List<Alumno>();
+        }
+        public Jornada(Universidad.EClases clase, Profesor instructor)
+            :this()
+        {
+            this.clase = clase;
+            this.instructor = instructor;
+        }
+        #endregion
+        #region propiedades
+        public List<Alumno>  Alumnos
+        {
+            get
+            {
+                return this.alumnos;
+            }
+            set
+            {
+                this.alumnos = value;
+            }
+        }
+        public Universidad.EClases Clase
+        {
+            get
+            {
+                return this.clase;
+            }
+            set
+            {
+                this.clase = value;
+            }
+        }
+        public Profesor Instructor
+        {
+            get
+            {
+                return this.instructor;
+            }
+            set
+            {
+                this.instructor = value;
+            }
+        }
+        #endregion
+        #region metodos
+        /*Una Jornada será igual a un Alumno si el mismo participa de la clase.
+        • Agregar Alumnos a la clase por medio del operador +, validando que no estén previamente
+        cargados.
+        • ToString mostrará todos los datos de la Jornada*/
 
+
+
+
+
+
+
+
+        #endregion
 
     }
 

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Excepciones;
 
+
 namespace ClasesAbstractas
 {
     //--------------------------------------------------------PERSONA
@@ -25,9 +26,10 @@ namespace ClasesAbstractas
         }
         public Persona(string nombre,string apellido,ENacionalidad nacionalidad)
         {
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.nacionalidad = nacionalidad;
+            //uso los set
+            this.Nombre = nombre;
+            this.Apellido = apellido;
+            this.Nacionalidad = nacionalidad;
         }
         public Persona(string nombre,string apellido, int dni, ENacionalidad nacionalidad)
             :this(nombre,apellido,nacionalidad)
@@ -63,7 +65,7 @@ namespace ClasesAbstractas
             }
             set
             {
-                this.nacionalidad = value;
+                this.nacionalidad = value;//UQE PASA SI PONE OTRA NACIONALIDAD???
             }
         }
         public string Apellido
@@ -202,7 +204,7 @@ namespace ClasesAbstractas
         public static bool operator ==(Universitario pg1, Universitario pg2)
         {
             bool rtn = false;
-            if(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI)
+            if(pg1.GetType()==pg2.GetType()&&(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI))//VALIDAR TIPO IS ALUMNO O IS PROFESOR
             {
                 rtn = true;
             }

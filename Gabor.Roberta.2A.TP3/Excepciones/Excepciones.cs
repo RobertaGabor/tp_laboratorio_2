@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Excepciones
 {
-    public class AlumnoRepetidoException:Exception
+    public class AlumnoRepetidoException:Exception      
     {
+        public AlumnoRepetidoException()
+            :base("Alumno repetido.")
+        {
+        }
     }
     public class DniInvalidoException : Exception
     {
@@ -44,9 +48,17 @@ namespace Excepciones
     }
     public class SinProfesorException : Exception
     {
+        public SinProfesorException()
+            : base("No hay Profesor para la clase")
+        {
+        }
     }
     public class ArchivosException : Exception
     {
+        public ArchivosException(Exception innerException)
+            :base("No se pudo efectuar la accion en el archivo, ",innerException)//TA BIEN PONELE
+        {
+        }
     }
 
 }
