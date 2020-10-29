@@ -253,8 +253,8 @@ namespace ClasesInstanciables
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"PROFESOR: {this.instructor}");
-            sb.AppendLine($"CLASE: {this.clase}");
+            sb.AppendLine("JORNADA:");
+            sb.AppendLine($"CLASE DE: {this.clase} POR {this.instructor.ToString()}");
             sb.AppendLine("ALUMNOS:");
             foreach(Alumno item in this.alumnos)
             {
@@ -465,13 +465,6 @@ namespace ClasesInstanciables
             return p;
         }
 
-        /*Si al querer agregar alumnos este ya figura en la lista, lanzar la excepción AlumnoRepetidoException.
-        • MostrarDatos será privado y de clase. Los datos del Universidad se harán públicos mediante
-        ToString.
-        • Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de sus
-        Profesores, Alumnos y Jornadas.
-        • Leer de clase retornará un Universidad con todos los datos previamente serializados.*/
-
         public static Universidad operator +(Universidad g, Universidad.EClases c)
         {
             try
@@ -484,12 +477,87 @@ namespace ClasesInstanciables
             }
             catch(Excepciones.SinProfesorException)
             {
-                throw new Excepciones.SinProfesorException();
+                throw new Excepciones.SinProfesorException();//en main atrapa una excepcion
             } 
         }
 
+        public static Universidad operator +(Universidad g, Profesor i)
+        {
+            Universidad aux = new Universidad();
+            aux = g;
+            if(g!=i)
+            {
+                aux.profesores.Add(i);
+            }
+            return aux;
+        }
+        public static Universidad operator +(Universidad g, Alumno a)
+        {
+            if(g==a)
+            {
+                throw new Excepciones.AlumnoRepetidoException();
+            }
+            else
+            {
+                Universidad aux = new Universidad();
+                aux = g;
+                aux.alumnos.Add(a);
+                return aux;
+            }
+        }
 
+        private static string MostrarDatos(Universidad uni)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(Jornada item in uni.jornadas)
+            {
+                sb.AppendLine(item.ToString());
+                sb.AppendLine("<------------------------------------->");
+            }
+            return sb.ToString();
+        }
 
+        public override string ToString()
+        {
+            return Universidad.MostrarDatos(this);
+        }
+
+        public static bool Guardar(Universidad uni)
+        {
+            bool rtn = false;
+            /*instanciar clase xml*/
+            Xml<Universidad> aux = new Xml<Universidad>();
+            /*busco metodo*/
+            try
+            {
+                aux.Guardar("Universidad.xml", uni);
+                rtn = true;
+            }
+            catch (Excepciones.ArchivosException e)
+            {
+                throw new Excepciones.ArchivosException(e);
+            }
+
+            return rtn;
+        }
+
+        public static Universidad Leer()
+        {
+            Universidad informacion=new Universidad();
+            /*instanciar clase texto*/
+            Xml<Universidad> aux = new Xml<Universidad>();
+            /*busco metodo*/
+            try
+            {
+                aux.Leer("Universidad.xml", out informacion);
+            }
+            catch (Excepciones.ArchivosException e)
+            {
+                throw new Excepciones.ArchivosException(e);
+            }
+
+            return informacion;
+        }
         #endregion
 
         #region enumerados
