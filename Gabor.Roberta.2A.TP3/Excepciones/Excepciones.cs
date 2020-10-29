@@ -64,7 +64,7 @@ namespace Excepciones
     public class ArchivosException : Exception
     {
         public ArchivosException(Exception innerException)
-            :this("No se pudo efectuar la accion en el archivo, ",innerException)//TA BIEN PONELE
+            :this("No se pudo efectuar la accion en el archivo, ",innerException)
         {
         }
         public ArchivosException(string message, Exception innerException)

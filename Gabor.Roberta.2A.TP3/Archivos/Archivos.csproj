@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClasesInstanciables\ClasesInstanciables.csproj">
-      <Project>{3f096f8c-7526-4fda-9ad6-72a1b41b37e0}</Project>
-      <Name>ClasesInstanciables</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Excepciones\Excepciones.csproj">
       <Project>{c7a9bdfb-7625-485a-ba54-1984168b5911}</Project>
       <Name>Excepciones</Name>

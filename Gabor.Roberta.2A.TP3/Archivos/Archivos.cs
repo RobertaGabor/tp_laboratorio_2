@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace Archivos
 {
-    public class Texto:IArchivo<string>//le paso un texto
+    public class Texto:IArchivo<string>
     {
         public bool Guardar(string archivo, string texto)
         {
@@ -25,14 +25,14 @@ namespace Archivos
             }
             catch (Exception e)
             {
-                throw new Excepciones.ArchivosException(e);//tomo cualquier esception producida y devuelvo una de tiro archivo(la uso en main)
+                throw new Excepciones.ArchivosException(e);
             }
         }
         public bool Leer(string archivo, out string texto)
         {
             try
             {
-                using (StreamReader sr = new StreamReader(archivo,true))//true para agregar datos, no sorbeescribir
+                using (StreamReader sr = new StreamReader(archivo,true))
                 {
                     texto = sr.ReadToEnd();   
                 }
@@ -41,11 +41,11 @@ namespace Archivos
             }
             catch (Exception e)
             {
-                throw new Excepciones.ArchivosException(e);//no hago return false???
+                throw new Excepciones.ArchivosException(e);
             }
         }
     }
-    public class Xml<T>: IArchivo<T>//le paso un objeto que no se de que tipo es
+    public class Xml<T>: IArchivo<T>
     {
         public bool Guardar(string archivo, T dato)
         {

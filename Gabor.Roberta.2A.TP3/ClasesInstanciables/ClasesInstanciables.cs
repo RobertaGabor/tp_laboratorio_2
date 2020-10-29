@@ -18,7 +18,7 @@ namespace ClasesInstanciables
         #endregion
 
         #region constructores
-        public Alumno()//DEFAULT SIN HACER
+        public Alumno()
         {
         }
         public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases clasesQueToma, EEstadoCuenta estadoCuenta)
@@ -52,7 +52,7 @@ namespace ClasesInstanciables
             return this.MostrarDatos();
         }
 
-        public static bool operator ==(Alumno a, Universidad.EClases clase)//CHEQUEAR SI DEBE SER != NULL
+        public static bool operator ==(Alumno a, Universidad.EClases clase)
         {
             bool rtn = false;
             if (a.claseQueToma == clase && a.estadoCuenta != EEstadoCuenta.Deudor)
@@ -90,10 +90,10 @@ namespace ClasesInstanciables
         #endregion
 
         #region constructores
-        public Profesor()//PORQUE?????
+        public Profesor()
         {
         }
-        static Profesor()//PRIVADA X DEFAULT
+        static Profesor()
         {
             Profesor.random = new Random();
         }
@@ -139,7 +139,7 @@ namespace ClasesInstanciables
         public static bool operator ==(Profesor i, Universidad.EClases clase)
         {
             bool rtn = false;
-            if (i.clasesDelDia.Contains(clase))//NO HACE FALTA VER NULL PORQUE VA A TENER 2 CLASES MINIMO
+            if (i.clasesDelDia.Contains(clase))
             {
                 rtn = true;
             }
@@ -266,12 +266,12 @@ namespace ClasesInstanciables
         public static bool Guardar(Jornada jornada)
         {
             bool rtn = false;
-            /*instanciar clase texto*/
+
             Texto texto = new Texto();
-            /*busco metodo*/
+
             try
             {
-                texto.Guardar("Jornada.txt", jornada.ToString());//la direccion de guardar ta bien??
+                texto.Guardar("Jornada.txt", jornada.ToString());
                 rtn = true;
             }
             catch(Excepciones.ArchivosException e)
@@ -285,9 +285,9 @@ namespace ClasesInstanciables
         public static string Leer()
         {
             string informacion;
-            /*instanciar clase texto*/
+
             Texto texto = new Texto();
-            /*busco metodo*/
+
             try
             {
                 texto.Leer("Jornada.txt", out informacion);
@@ -311,6 +311,14 @@ namespace ClasesInstanciables
         private List<Jornada> jornadas;
         #endregion
 
+        #region constructores
+        public Universidad()
+        {
+            alumnos = new List<Alumno>();
+            profesores = new List<Profesor>();
+            jornadas = new List<Jornada>();
+        }
+        #endregion
         #region propiedades
         public List<Alumno> Alumnos
         {
@@ -348,7 +356,6 @@ namespace ClasesInstanciables
             }
         }
 
-        /*indexador*/
         public Jornada this[int i]
         {
             get
@@ -472,12 +479,21 @@ namespace ClasesInstanciables
                 Jornada jornada = new Jornada(c, g == c);
                 Universidad aux = new Universidad();
                 aux = g;
+                foreach (Alumno item in g.alumnos)
+                {
+                    if (item == c)
+                    {
+
+                      jornada += item;
+
+                    }
+                }
                 aux.jornadas.Add(jornada);
                 return aux;
             }
             catch(Excepciones.SinProfesorException)
             {
-                throw new Excepciones.SinProfesorException();//en main atrapa una excepcion
+                throw new Excepciones.SinProfesorException();
             } 
         }
 
@@ -525,9 +541,9 @@ namespace ClasesInstanciables
         public static bool Guardar(Universidad uni)
         {
             bool rtn = false;
-            /*instanciar clase xml*/
+
             Xml<Universidad> aux = new Xml<Universidad>();
-            /*busco metodo*/
+  
             try
             {
                 aux.Guardar("Universidad.xml", uni);
@@ -544,9 +560,9 @@ namespace ClasesInstanciables
         public static Universidad Leer()
         {
             Universidad informacion=new Universidad();
-            /*instanciar clase texto*/
+         
             Xml<Universidad> aux = new Xml<Universidad>();
-            /*busco metodo*/
+     
             try
             {
                 aux.Leer("Universidad.xml", out informacion);

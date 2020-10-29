@@ -10,7 +10,6 @@ using Excepciones;
 
 namespace ClasesAbstractas
 {
-    //--------------------------------------------------------PERSONA
     public abstract class Persona
     {
         #region atributos
@@ -21,12 +20,11 @@ namespace ClasesAbstractas
         #endregion
 
         #region constructores
-        public Persona()//CHEQUEAR ESTO
+        public Persona()
         {
         }
         public Persona(string nombre,string apellido,ENacionalidad nacionalidad)
         {
-            //uso los set
             this.Nombre = nombre;
             this.Apellido = apellido;
             this.Nacionalidad = nacionalidad;
@@ -65,7 +63,7 @@ namespace ClasesAbstractas
             }
             set
             {
-                this.nacionalidad = value;//UQE PASA SI PONE OTRA NACIONALIDAD???
+                this.nacionalidad = value;
             }
         }
         public string Apellido
@@ -165,13 +163,7 @@ namespace ClasesAbstractas
         }
         #endregion
     }
-   
-    
-    
-    //-----------------------------UNIVERSITARIO
-    
-    
-    
+
     public abstract class Universitario:Persona
     {
         #region atributos
@@ -184,7 +176,7 @@ namespace ClasesAbstractas
         {
             this.legajo = legajo;
         }
-        public Universitario()//default???
+        public Universitario()
         {
         }
         #endregion
@@ -204,7 +196,7 @@ namespace ClasesAbstractas
         public static bool operator ==(Universitario pg1, Universitario pg2)
         {
             bool rtn = false;
-            if(pg1.GetType()==pg2.GetType()&&(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI))//VALIDAR TIPO IS ALUMNO O IS PROFESOR
+            if(pg1.GetType()==pg2.GetType()&&(pg1.legajo==pg2.legajo||pg1.DNI==pg2.DNI))
             {
                 rtn = true;
             }
