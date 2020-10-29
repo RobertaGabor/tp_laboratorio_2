@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClasesInstanciables;
 using System.IO;
 using Excepciones;
 using System.Xml.Serialization;
@@ -11,7 +10,7 @@ using System.Xml;
 
 namespace Archivos
 {
-    public class Texto:IArchivo<string>
+    public class Texto:IArchivo<string>//le paso un texto
     {
         public bool Guardar(string archivo, string texto)
         {
@@ -46,7 +45,7 @@ namespace Archivos
             }
         }
     }
-    public class Xml<T>: IArchivo<T>
+    public class Xml<T>: IArchivo<T>//le paso un objeto que no se de que tipo es
     {
         public bool Guardar(string archivo, T dato)
         {

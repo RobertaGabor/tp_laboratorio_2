@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClasesInstanciables", "Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\Excepciones.csproj", "{C7A9BDFB-7625-485A-BA54-1984168B5911}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archivos", "Archivos\Archivos.csproj", "{70E1C697-5836-4ADF-B485-4C500267CAE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C7A9BDFB-7625-485A-BA54-1984168B5911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7A9BDFB-7625-485A-BA54-1984168B5911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7A9BDFB-7625-485A-BA54-1984168B5911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E1C697-5836-4ADF-B485-4C500267CAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E1C697-5836-4ADF-B485-4C500267CAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E1C697-5836-4ADF-B485-4C500267CAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E1C697-5836-4ADF-B485-4C500267CAE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

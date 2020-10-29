@@ -12,6 +12,10 @@ namespace Excepciones
             :base("Alumno repetido.")
         {
         }
+        public AlumnoRepetidoException(string message)
+            :base(message)
+        {
+        }
     }
     public class DniInvalidoException : Exception
     {
@@ -52,13 +56,22 @@ namespace Excepciones
             : base("No hay Profesor para la clase")
         {
         }
+        public SinProfesorException(string message)
+            : base(message)
+        {
+        }
     }
     public class ArchivosException : Exception
     {
         public ArchivosException(Exception innerException)
-            :base("No se pudo efectuar la accion en el archivo, ",innerException)//TA BIEN PONELE
+            :this("No se pudo efectuar la accion en el archivo, ",innerException)//TA BIEN PONELE
         {
         }
+        public ArchivosException(string message, Exception innerException)
+            :base(message,innerException)
+        {
+        }
+
     }
 
 }

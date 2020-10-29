@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClasesAbstractas;
-
+using Archivos;
+using System.Runtime.CompilerServices;
+using Excepciones;
 
 namespace ClasesInstanciables
 {
@@ -207,25 +209,99 @@ namespace ClasesInstanciables
             }
         }
         #endregion
+
         #region metodos
-        /*Una Jornada será igual a un Alumno si el mismo participa de la clase.
-        • Agregar Alumnos a la clase por medio del operador +, validando que no estén previamente
-        cargados.
-        • ToString mostrará todos los datos de la Jornada*/
+        public static bool operator==(Jornada j, Alumno a)
+        {
+            bool rtn = false;
+
+            if(j.alumnos.Count>0)
+            {
+                foreach(Alumno item in j.alumnos)
+                {
+                    if(item.Equals(a))
+                    {
+                        rtn = true;
+                        break;
+                    }
+                }
+            }
 
 
+            return rtn;
+        }
 
+        public static bool operator !=(Jornada j, Alumno a)
+        {
+            return !(j == a);
+        }
 
+        public static Jornada operator +(Jornada j, Alumno a)
+        {
+            Jornada aux = new Jornada();
+            aux = j;
+            if (j!=a)
+            {
+                aux.alumnos.Add(a);
+            }
+            else
+            {
+                throw new AlumnoRepetidoException();
+            }
+            return aux;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"PROFESOR: {this.instructor}");
+            sb.AppendLine($"CLASE: {this.clase}");
+            sb.AppendLine("ALUMNOS:");
+            foreach(Alumno item in this.alumnos)
+            {
+                sb.AppendLine(item.ToString());
+            }
+            return sb.ToString();
+        }
+        
+        public static bool Guardar(Jornada jornada)
+        {
+            bool rtn = false;
+            /*instanciar clase texto*/
+            Texto texto = new Texto();
+            /*busco metodo*/
+            try
+            {
+                texto.Guardar("Jornada.txt", jornada.ToString());//la direccion de guardar ta bien??
+                rtn = true;
+            }
+            catch(Excepciones.ArchivosException e)
+            {
+                throw new Excepciones.ArchivosException(e);
+            }
+            
+            return rtn;
+        }
 
+        public static string Leer()
+        {
+            string informacion;
+            /*instanciar clase texto*/
+            Texto texto = new Texto();
+            /*busco metodo*/
+            try
+            {
+                texto.Leer("Jornada.txt", out informacion);
+            }
+            catch (Excepciones.ArchivosException e)
+            {
+                throw new Excepciones.ArchivosException(e);
+            }
 
-
-
+            return informacion;
+        }
         #endregion
 
     }
-
-
-
 
     public class Universidad
     {
