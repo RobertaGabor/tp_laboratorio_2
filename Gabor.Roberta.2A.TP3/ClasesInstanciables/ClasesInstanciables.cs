@@ -68,8 +68,6 @@ namespace ClasesInstanciables
         }
         #endregion
 
-
-
         #region enumerados
         public enum EEstadoCuenta
         {
@@ -174,6 +172,7 @@ namespace ClasesInstanciables
             this.instructor = instructor;
         }
         #endregion
+
         #region propiedades
         public List<Alumno>  Alumnos
         {
@@ -319,6 +318,7 @@ namespace ClasesInstanciables
             jornadas = new List<Jornada>();
         }
         #endregion
+
         #region propiedades
         public List<Alumno> Alumnos
         {
@@ -465,6 +465,7 @@ namespace ClasesInstanciables
                     if (item != c)
                     {
                        p = item;
+                       break;
                     }
 
                 }
@@ -484,8 +485,8 @@ namespace ClasesInstanciables
                     if (item == c)
                     {
 
-                      jornada += item;
-
+                      jornada += item;/*no dejar la jornada sin alumnos para poder recorrer universidad*/
+                        //solo se agregan a 1 jornada toda una clase??
                     }
                 }
                 aux.jornadas.Add(jornada);
