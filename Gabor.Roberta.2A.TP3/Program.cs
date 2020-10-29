@@ -8,7 +8,7 @@ using ClasesInstanciables;
 using Excepciones;
 using EntidadesAbstractas = ClasesAbstractas;
 
-/*ARCHIVOS GUARDADOS EN BIN/DEBUG*/
+                                        /*ARCHIVOS GUARDADOS EN BIN/DEBUG*/
 
 namespace Gabor.Roberta._2A.TP3
 {
