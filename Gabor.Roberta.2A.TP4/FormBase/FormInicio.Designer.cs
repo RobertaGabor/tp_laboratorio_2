@@ -50,9 +50,10 @@
             // dtaGridView
             // 
             this.dtaGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtaGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dtaGridView.Location = new System.Drawing.Point(12, 79);
             this.dtaGridView.Name = "dtaGridView";
-            this.dtaGridView.Size = new System.Drawing.Size(375, 243);
+            this.dtaGridView.Size = new System.Drawing.Size(440, 243);
             this.dtaGridView.TabIndex = 1;
             // 
             // btnComprar

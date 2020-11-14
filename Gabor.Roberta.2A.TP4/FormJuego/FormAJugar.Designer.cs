@@ -121,6 +121,8 @@
             this.Controls.Add(this.lblMonedaAJugar);
             this.Controls.Add(this.lblJugador);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(524, 234);
+            this.MinimumSize = new System.Drawing.Size(524, 234);
             this.Name = "FormJugar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "¡A jugar!";

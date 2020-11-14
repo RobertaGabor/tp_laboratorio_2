@@ -66,6 +66,7 @@
             this.MinimumSize = new System.Drawing.Size(307, 333);
             this.Name = "FormRule";
             this.ShowIcon = false;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.btnClosingForm_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxRuleta)).EndInit();
             this.ResumeLayout(false);
 

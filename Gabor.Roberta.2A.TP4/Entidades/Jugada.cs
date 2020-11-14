@@ -9,9 +9,8 @@ namespace Entidades
     public class Jugada
     {
         /*atributos*/ /*hacer propiedades para serializar*/
-        protected int dniJugador;
-        protected double saldoActual;
-        protected double varianza;
+        protected Jugador victima;
+        protected float varianza;
         protected ETipoTranssaccion movimiento;
 
         public Jugada(){}

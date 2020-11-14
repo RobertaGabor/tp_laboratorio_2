@@ -9,5 +9,7 @@ namespace Entidades
     public class Jugador
     {
         protected int dni;
+        protected float saldo;
+        /*cantidad de monedas*/
     }
 }
