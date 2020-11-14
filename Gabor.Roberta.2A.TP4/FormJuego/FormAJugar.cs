@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using FormRuleta;
+using System.Threading;
 
 namespace FormJuego
 {
     public partial class FormJugar : Form
     {
+        Thread hilo;
         public FormJugar()
         {
             InitializeComponent();
@@ -42,6 +44,16 @@ namespace FormJuego
         {
             FormRule ruleta = new FormRule();
             ruleta.Show();
+            /*llamar hilo aca?*/
+            hilo = new Thread(ruleta.spinRoulette);
+            hilo.Start();
+            /*llamo evento que frena ruleta*/
+            ruleta.frenacion += spinStop;
+        }
+
+        public void spinStop(object sender, EventArgs e)
+        {
+            this.hilo.Abort();
         }
     }
 }

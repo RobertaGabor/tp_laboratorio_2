@@ -53,6 +53,7 @@
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "PARAR";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnSpinParar_Click);
             // 
             // FormRule
             // 
@@ -61,6 +62,8 @@
             this.ClientSize = new System.Drawing.Size(291, 294);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.picBoxRuleta);
+            this.MaximumSize = new System.Drawing.Size(307, 333);
+            this.MinimumSize = new System.Drawing.Size(307, 333);
             this.Name = "FormRule";
             this.ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)(this.picBoxRuleta)).EndInit();
