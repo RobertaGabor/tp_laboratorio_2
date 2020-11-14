@@ -1,0 +1,16 @@
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormJuego.exe.config
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormJuego.exe
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormJuego.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\Entidades.dll
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\Entidades.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.csprojAssemblyReference.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.FormJugar.resources
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.Properties.Resources.resources
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.csproj.GenerateResource.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.csproj.CoreCompileInputs.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.csproj.CopyComplete
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.exe
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\obj\Debug\FormJuego.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormRuleta.exe
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormRuleta.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormJuego\bin\Debug\FormRuleta.exe.config

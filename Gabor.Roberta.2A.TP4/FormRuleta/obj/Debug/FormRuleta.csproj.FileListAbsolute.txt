@@ -1,0 +1,10 @@
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\bin\Debug\FormRuleta.exe.config
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\bin\Debug\FormRuleta.exe
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\bin\Debug\FormRuleta.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.csprojAssemblyReference.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.FormRule.resources
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.Properties.Resources.resources
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.csproj.GenerateResource.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.csproj.CoreCompileInputs.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.exe
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormRuleta\obj\Debug\FormRuleta.pdb

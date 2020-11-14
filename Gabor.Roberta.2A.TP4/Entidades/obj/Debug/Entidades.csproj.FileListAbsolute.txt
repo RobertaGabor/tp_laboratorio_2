@@ -1,0 +1,5 @@
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Entidades\bin\Debug\Entidades.dll
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Entidades\bin\Debug\Entidades.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Entidades\obj\Debug\Entidades.dll
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Entidades\obj\Debug\Entidades.pdb
