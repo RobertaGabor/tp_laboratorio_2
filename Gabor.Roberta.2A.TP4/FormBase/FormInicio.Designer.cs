@@ -55,6 +55,7 @@
             this.dtaGridView.Name = "dtaGridView";
             this.dtaGridView.Size = new System.Drawing.Size(440, 243);
             this.dtaGridView.TabIndex = 1;
+            this.dtaGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DobleClick);
             // 
             // btnComprar
             // 

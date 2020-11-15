@@ -15,6 +15,7 @@ namespace FormRuleta
     {
         public delegate void frenarRuleta(object sender, EventArgs e);
         public event frenarRuleta frenacion;
+        private bool closing;
         
 
         private bool win=true;
@@ -28,6 +29,7 @@ namespace FormRuleta
         {
             Image flipImage = picBoxRuleta.Image;
             Bitmap bitmap = new Bitmap(flipImage);
+            this.closing = false;
             do
             {
                 bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
@@ -41,11 +43,23 @@ namespace FormRuleta
         private void btnSpinParar_Click(object sender, EventArgs e)
         {
             this.frenacion(frenacion, EventArgs.Empty);
+            this.closing = true;
         }
 
         private void btnClosingForm_Click(object sender, FormClosingEventArgs e)
         {
-            this.frenacion(frenacion, e);/*cerrar hilo cuando cierro*/
+          if(!this.closing)
+          {
+                if (MessageBox.Show("Seguro que desea salir? No se guardaran las apuestas", "No se olvide de jugar!",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.frenacion(frenacion, e);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+          }   
         }
     }
 }

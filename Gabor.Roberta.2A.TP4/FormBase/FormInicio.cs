@@ -113,5 +113,9 @@ namespace FormBase
             return rta;
         }
 
+        private void DobleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MessageBox.Show("hola");//traer un id de esa fila y recorrer casino lista de jugadores y sacar la cantidad de monedas de ahi.
+        }
     }
 }
