@@ -59,7 +59,11 @@ namespace FormRuleta
                 {
                     e.Cancel = true;
                 }
-          }   
+          } 
+          else
+          {
+                this.frenacion(frenacion, e);
+          }
         }
     }
 }

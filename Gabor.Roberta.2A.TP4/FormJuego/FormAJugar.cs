@@ -67,7 +67,11 @@ namespace FormJuego
 
         public void spinStop(object sender, EventArgs e)
         {
-            this.hilo.Abort();
+            if(this.hilo.IsAlive)
+            {
+                this.hilo.Abort();
+            }
+            
             if(e!=EventArgs.Empty)
             {
                 invoked = false;
