@@ -41,10 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Billetera.cs" />
     <Compile Include="ETipoTransaccion.cs" />
     <Compile Include="Jugada.cs" />
-    <Compile Include="ETipoMaquina.cs" />
     <Compile Include="ETipoMoneda.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Moneda.cs" />

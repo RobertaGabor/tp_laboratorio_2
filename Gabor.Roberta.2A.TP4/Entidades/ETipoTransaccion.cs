@@ -1,4 +1,4 @@
-﻿public enum ETipoTranssaccion
+﻿public enum ETipoTransaccion
 {
     pierde,
     gana,

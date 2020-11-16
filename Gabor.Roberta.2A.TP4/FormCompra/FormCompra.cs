@@ -28,5 +28,10 @@ namespace FormCompra
             this.cmbBoxTipoMoneda.SelectedItem = ETipoMoneda.oro;
             this.cmbBoxTipoMoneda.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Jugador victima = new Jugador();
+        }
     }
 }
