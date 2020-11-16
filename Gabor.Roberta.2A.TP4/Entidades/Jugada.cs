@@ -45,6 +45,6 @@ namespace Entidades
 
             return rtn;
         }
-
+        //en la funcion que crear en construct??? veo que poner de win y eso en set y propiedades
     }
 }

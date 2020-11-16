@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cantidadInvalidaEx.cs" />
+    <Compile Include="dniInvalidoEx.cs" />
     <Compile Include="ETipoTransaccion.cs" />
     <Compile Include="Jugada.cs" />
     <Compile Include="ETipoMoneda.cs" />

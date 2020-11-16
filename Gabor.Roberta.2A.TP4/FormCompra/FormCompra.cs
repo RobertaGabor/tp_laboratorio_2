@@ -31,7 +31,7 @@ namespace FormCompra
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Jugador victima = new Jugador();
+            //Jugador victima = new Jugador();
         }
     }
 }

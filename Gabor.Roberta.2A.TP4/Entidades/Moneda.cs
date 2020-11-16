@@ -105,6 +105,18 @@ namespace Entidades
             return cant;
         }
 
-
+        public static explicit operator int(Moneda m)
+        {
+            int aux = 0;
+            foreach (ETipoMoneda item in Enum.GetValues(typeof(ETipoMoneda)))
+            {
+                if (m.Moneyda == item)
+                {
+                    aux = m.Precio;
+                    break;
+                }
+            }
+            return aux;
+        }
     }
 }
