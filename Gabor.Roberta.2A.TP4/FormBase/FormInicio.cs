@@ -11,6 +11,7 @@ using FormCompra;
 using FormJuego;
 using System.IO;
 using System.Data.SqlClient;
+using Entidades;
 
 namespace FormBase
 {
@@ -19,10 +20,12 @@ namespace FormBase
         private SqlConnection cn;
         private SqlDataAdapter da;
         private DataTable dt;
+        private Casino empresa;
+
         public FormPadre()
         {
             InitializeComponent();
-            
+            this.empresa = new Casino();
             try
             {
                 if(!this.ConfigurarDataAdapter())
@@ -64,8 +67,10 @@ namespace FormBase
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            FormComprarMonedas comprar = new FormComprarMonedas();
+            
+            FormComprarMonedas comprar = new FormComprarMonedas(this.empresa);
             comprar.ShowDialog();
+            
         }
 
         private void btnAJugar_Click(object sender, EventArgs e)
@@ -82,7 +87,6 @@ namespace FormBase
             {
                 string host = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
                 this.cn = new SqlConnection(host);
-
                 this.da = new SqlDataAdapter();
 
                 this.da.SelectCommand = new SqlCommand("SELECT dni, saldo, variacion, transaccion FROM [datos_Jugada].[dbo].[jugadas]", cn);
@@ -112,6 +116,7 @@ namespace FormBase
 
             return rta;
         }
+
 
         private void DobleClick(object sender, DataGridViewCellMouseEventArgs e)
         {

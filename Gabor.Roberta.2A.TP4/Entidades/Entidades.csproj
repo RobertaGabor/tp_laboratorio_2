@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoletoChances.cs" />
     <Compile Include="cantidadInvalidaEx.cs" />
+    <Compile Include="Casino.cs" />
     <Compile Include="dniInvalidoEx.cs" />
     <Compile Include="ETipoTransaccion.cs" />
     <Compile Include="Jugada.cs" />

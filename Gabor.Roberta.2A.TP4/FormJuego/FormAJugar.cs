@@ -17,9 +17,12 @@ namespace FormJuego
     {
         Thread hilo;
         private bool invoked = false;
+        bool control = false;
         public FormJugar()
         {
             InitializeComponent();
+            lblBoletos.Text = "";
+            rdoButtonBoleto.Checked = false;
         }
 
         private void FormJugar_Load(object sender, EventArgs e)
@@ -29,6 +32,7 @@ namespace FormJuego
                 this.cmbBoxAJugar.Items.Add(item);
             }
             this.cmbBoxAJugar.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbBoxAJugar.SelectedItem = ETipoMoneda.oro;
         }
 
         private void btnIniciativaJugar_Focus(object sender, EventArgs e)
@@ -43,7 +47,9 @@ namespace FormJuego
 
         private void btnJugar_Click(object sender, EventArgs e)
         {
-           
+           //creo jugador auxiliar 
+            //if() si el boton esta checked y no tiene boletos que salte exception
+            
             if(!invoked)
             {
                 FormRule ruleta = new FormRule();
@@ -56,6 +62,10 @@ namespace FormJuego
                     ruleta.frenacion += spinStop;
                
                 this.invoked = true;
+                if(rdoButtonBoleto.Checked)
+                {
+                    //resto cantidad boletos al jugador
+                }
             }
             else
             {
@@ -76,6 +86,34 @@ namespace FormJuego
             {
                 invoked = false;
             }
+        }
+
+        private void rdioBtnChecked_Click(object sender, EventArgs e)
+        {
+            //cuando esta checked mostrar cantidad de boletos del jugador
+        }
+
+        private void txtJugador_NoTrampa(object sender, EventArgs e)
+        {
+            //si boleto esta checked que no me deje cambiar
+            if(rdoButtonBoleto.Checked)
+            {
+                rdoButtonBoleto.Checked = false;
+                this.control = !this.control;
+            }
+        }
+
+        private void rdoBtnCambio_Click(object sender, EventArgs e)
+        {
+           if(!this.control)
+           {
+                rdoButtonBoleto.Checked = true;
+           }
+           else
+           {
+                rdoButtonBoleto.Checked = false;
+           }
+            this.control = !this.control;
         }
     }
 }

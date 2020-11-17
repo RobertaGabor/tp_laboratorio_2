@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{213d0389-d381-4b68-8459-ed6d9c09f7a6}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormCompra\FormCompra.csproj">
       <Project>{57fcf795-9d75-4783-9506-743d196d3439}</Project>
       <Name>FormCompra</Name>

@@ -29,7 +29,7 @@ namespace Entidades
         public Moneda(int precio,int canti,ETipoMoneda tipo,int ganancia)
         {
             this.precio = precio;
-            this.cantidad = this.Cantidad;
+            this.cantidad = canti;
             this.moneda = tipo;
             this.ganancia = ganancia;
         }
@@ -69,16 +69,25 @@ namespace Entidades
             List<Moneda> aux = new List<Moneda>();
             aux = l;
             int indice = 0;
+            bool esta = false;
             foreach (Moneda item in l)
             {
                 if (item.Equals(m))
                 {
-                    break;
-
+                    esta = true;
+                    break;                
                 }
                 indice++;
             }
-            l[indice] += m.Cantidad;
+            
+            if(!esta)
+            {
+                l.Add(m);
+            }
+            else
+            {
+                l[indice] += m.Cantidad;
+            }
             return l;
         }
 
@@ -105,7 +114,7 @@ namespace Entidades
             return cant;
         }
 
-        public static explicit operator int(Moneda m)
+        public static explicit operator int(Moneda m)//QUE ONDAAAA
         {
             int aux = 0;
             foreach (ETipoMoneda item in Enum.GetValues(typeof(ETipoMoneda)))

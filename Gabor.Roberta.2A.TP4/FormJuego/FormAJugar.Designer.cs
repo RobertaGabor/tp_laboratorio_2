@@ -36,6 +36,8 @@
             this.txtCantidadAJugar = new System.Windows.Forms.TextBox();
             this.cmbBoxAJugar = new System.Windows.Forms.ComboBox();
             this.btnAJugar = new System.Windows.Forms.Button();
+            this.rdoButtonBoleto = new System.Windows.Forms.RadioButton();
+            this.lblBoletos = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblJugador
@@ -75,6 +77,7 @@
             this.txtBoxIDAJugar.Name = "txtBoxIDAJugar";
             this.txtBoxIDAJugar.Size = new System.Drawing.Size(182, 26);
             this.txtBoxIDAJugar.TabIndex = 3;
+            this.txtBoxIDAJugar.TextChanged += new System.EventHandler(this.txtJugador_NoTrampa);
             // 
             // txtCantidadAJugar
             // 
@@ -98,7 +101,7 @@
             // 
             this.btnAJugar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAJugar.Font = new System.Drawing.Font("Casino Shadow", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAJugar.Location = new System.Drawing.Point(356, 71);
+            this.btnAJugar.Location = new System.Drawing.Point(373, 71);
             this.btnAJugar.Name = "btnAJugar";
             this.btnAJugar.Size = new System.Drawing.Size(131, 52);
             this.btnAJugar.TabIndex = 6;
@@ -108,11 +111,36 @@
             this.btnAJugar.MouseEnter += new System.EventHandler(this.btnIniciativaJugar_Focus);
             this.btnAJugar.MouseLeave += new System.EventHandler(this.btnIniciativaDejarJugar_Focus);
             // 
+            // rdoButtonBoleto
+            // 
+            this.rdoButtonBoleto.AutoSize = true;
+            this.rdoButtonBoleto.Font = new System.Drawing.Font("Candara", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoButtonBoleto.Location = new System.Drawing.Point(344, 136);
+            this.rdoButtonBoleto.Name = "rdoButtonBoleto";
+            this.rdoButtonBoleto.Size = new System.Drawing.Size(200, 18);
+            this.rdoButtonBoleto.TabIndex = 7;
+            this.rdoButtonBoleto.TabStop = true;
+            this.rdoButtonBoleto.Text = "¡Utilizar boleto para mas chances!";
+            this.rdoButtonBoleto.UseVisualStyleBackColor = true;
+            this.rdoButtonBoleto.CheckedChanged += new System.EventHandler(this.rdioBtnChecked_Click);
+            this.rdoButtonBoleto.Click += new System.EventHandler(this.rdoBtnCambio_Click);
+            // 
+            // lblBoletos
+            // 
+            this.lblBoletos.AutoSize = true;
+            this.lblBoletos.Location = new System.Drawing.Point(359, 167);
+            this.lblBoletos.Name = "lblBoletos";
+            this.lblBoletos.Size = new System.Drawing.Size(16, 13);
+            this.lblBoletos.TabIndex = 8;
+            this.lblBoletos.Text = "...";
+            // 
             // FormJugar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 195);
+            this.ClientSize = new System.Drawing.Size(545, 195);
+            this.Controls.Add(this.lblBoletos);
+            this.Controls.Add(this.rdoButtonBoleto);
             this.Controls.Add(this.btnAJugar);
             this.Controls.Add(this.cmbBoxAJugar);
             this.Controls.Add(this.txtCantidadAJugar);
@@ -121,8 +149,8 @@
             this.Controls.Add(this.lblMonedaAJugar);
             this.Controls.Add(this.lblJugador);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(524, 234);
-            this.MinimumSize = new System.Drawing.Size(524, 234);
+            this.MaximumSize = new System.Drawing.Size(561, 234);
+            this.MinimumSize = new System.Drawing.Size(561, 234);
             this.Name = "FormJugar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "¡A jugar!";
@@ -141,6 +169,8 @@
         private System.Windows.Forms.TextBox txtCantidadAJugar;
         private System.Windows.Forms.ComboBox cmbBoxAJugar;
         private System.Windows.Forms.Button btnAJugar;
+        private System.Windows.Forms.RadioButton rdoButtonBoleto;
+        private System.Windows.Forms.Label lblBoletos;
     }
 }
 
