@@ -115,5 +115,13 @@ namespace FormJuego
            }
             this.control = !this.control;
         }
+
+        private void ClosingJugar_Asegurar(object sender, FormClosingEventArgs e)
+        {
+            if(this.hilo!=null&& this.hilo.IsAlive)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

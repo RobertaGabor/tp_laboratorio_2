@@ -21,6 +21,8 @@ namespace FormBase
         private SqlDataAdapter da;
         private DataTable dt;
         private Casino empresa;
+        FormJugar juego;
+        FormComprarMonedas comprar;
 
         public FormPadre()
         {
@@ -39,6 +41,7 @@ namespace FormBase
                 this.dt.Columns.Add("saldo", typeof(float));
                 this.dt.Columns.Add("variacion", typeof(float));
                 this.dt.Columns.Add("transaccion", typeof(string));
+                this.dt.PrimaryKey = new DataColumn[] { this.dt.Columns[0] };
 
                 try
                 {
@@ -68,15 +71,44 @@ namespace FormBase
         private void btnComprar_Click(object sender, EventArgs e)
         {
             
-            FormComprarMonedas comprar = new FormComprarMonedas(this.empresa);
-            comprar.ShowDialog();
+            this.comprar = new FormComprarMonedas(this.empresa);
+            this.comprar.ShowDialog();
             
+            if(this.comprar.DialogResult==DialogResult.OK)
+            {
+                if(this.empresa==this.comprar.participante)//si ya esta en el casino
+                {
+                    //update row
+                    DataRow fila = this.dt.Rows.Find(this.comprar.participante.DNI);
+                    this.LlenarFila(fila);
+
+                }
+                else//si no esta
+                {
+                    this.empresa += this.comprar.participante;
+                    DataRow fila = this.dt.NewRow();
+                    this.LlenarFila(fila);
+                    this.dt.Rows.Add(fila);
+                    
+                }
+            }
+            ///si dialog ok : veo si ese participante esta en el casino, si no esta agrego row y a casino
+            ///si esta hago un apdate en ese row de mismo dni, donde sumo la varianza con el saldo, sumo las monedas compradas
+            ///si compro boleto sumo boleto y resto moneda de bronce
+            
+        }
+        private void LlenarFila(DataRow fila)
+        {
+            fila["dni"] = this.comprar.participante.DNI;
+            fila["saldo"] = this.comprar.participante.Saldo;
+            fila["variacion"] = this.comprar.primera.Varianza;
+            fila["transaccion"] = this.comprar.primera.Movimiento;
         }
 
         private void btnAJugar_Click(object sender, EventArgs e)
         {
-            FormJugar juego = new FormJugar();
-            juego.ShowDialog();
+            this.juego = new FormJugar();
+            this.juego.ShowDialog();
         }
 
         private bool ConfigurarDataAdapter()
@@ -122,5 +154,6 @@ namespace FormBase
         {
             MessageBox.Show("hola");//traer un id de esa fila y recorrer casino lista de jugadores y sacar la cantidad de monedas de ahi.
         }
+
     }
 }

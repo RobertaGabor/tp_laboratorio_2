@@ -9,13 +9,19 @@ namespace Entidades
     public sealed class Casino
     {
         private List<Jugador> jugadores;
+        private List<Jugada> jugadas;
         public Casino()
         {
             this.jugadores = new List<Jugador>();
+            this.jugadas = new List<Jugada>();
         }
         public List<Jugador> Jugadores
         {
             get { return this.jugadores; }        
+        }
+        public List<Jugada> Jugadas
+        {
+            get { return this.jugadas; }
         }
 
         public static bool operator ==(Casino c, Jugador j)
@@ -48,5 +54,7 @@ namespace Entidades
             }
             return aux;
         }
+
+
     }
 }

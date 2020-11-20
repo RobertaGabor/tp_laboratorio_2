@@ -9,7 +9,7 @@ namespace Entidades
     public class cantidadInvalidaException : Exception
     {
         public cantidadInvalidaException()
-            : base("El DNI ingresado no es un número válido")
+            : base("La cantidad ingresada no es un número válido")
         {
         }
         public cantidadInvalidaException(string message)
@@ -18,12 +18,12 @@ namespace Entidades
 
         }
         public cantidadInvalidaException(Exception e)
-            : base("El DNI ingresado no es un número válido", e)
+            : base("La cantidad ingresada no es un número válido", e)
         {
 
         }
         public cantidadInvalidaException(string message, Exception e)
-            : base("El DNI ingresado no es un número válido:" + message, e)
+            : base("La cantidad ingresada no es un número válido:" + message, e)
         {
 
         }

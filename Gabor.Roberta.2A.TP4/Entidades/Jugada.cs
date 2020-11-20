@@ -14,6 +14,10 @@ namespace Entidades
         protected ETipoTransaccion movimiento;
 
         public Jugada(){}
+        public Jugada(Jugador j)
+        {
+            this.victima = j;
+        }
 
         public ETipoTransaccion Movimiento
         {
@@ -24,25 +28,25 @@ namespace Entidades
         public float Varianza
         {
             get { return this.varianza; }
-            set { //hago el calculo
-            }
+            set { this.varianza = value; }
         }
 
-        private static float CalcularVarianza(Jugador j, int cantidadApostada, ETipoMoneda monedaApostada,bool win)
+        public static float CalcularVarianza(Moneda m,int cantidad,ETipoTransaccion win)
         {
-            float rtn = j.Saldo;
+            float rtn = 0;
 
             switch(win)
             {
-                case true:
-                    //sumo al saldo
+                case ETipoTransaccion.compra:
+                    rtn = m.Precio* cantidad;
                     break;
-                case false:
-                    //resto al saldo
+                case ETipoTransaccion.gana:
+                    rtn = m.ProbabilidadesEnGanancias(cantidad);
+                    break;
+                case ETipoTransaccion.pierde:
+                    rtn = -(m.Precio * cantidad);
                     break;
             }
-
-
             return rtn;
         }
         //en la funcion que crear en construct??? veo que poner de win y eso en set y propiedades

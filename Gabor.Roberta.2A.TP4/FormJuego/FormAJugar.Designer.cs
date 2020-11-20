@@ -154,6 +154,7 @@
             this.Name = "FormJugar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "¡A jugar!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingJugar_Asegurar);
             this.Load += new System.EventHandler(this.FormJugar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

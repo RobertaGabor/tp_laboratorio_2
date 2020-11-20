@@ -13,9 +13,10 @@ namespace Entidades
         protected BoletoChances boletos;
         protected List<Moneda> billetera;
 
-        private Jugador()
+        public Jugador()
         {
             this.billetera = new List<Moneda>();
+            this.boletos = new BoletoChances();
         }
         public Jugador(int dni)
             :this()
@@ -90,9 +91,16 @@ namespace Entidades
 
         public static bool operator ==(Jugador j, Jugador jj)
         {
-            if(j.dni==jj.dni)
+            if((object)j==null&&(object)jj==null)
             {
                 return true;
+            }
+            else if((object)j!=null&&(object)jj!=null)
+            {
+                if(j.dni == jj.dni)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -106,19 +114,9 @@ namespace Entidades
             float total = 0;
             foreach(Moneda item in m)
             {
-                
-                if(item.Moneyda==ETipoMoneda.oro)
-                {
-                    total += item.Cantidad * item.Precio;
-                }
-                if(item.Moneyda==ETipoMoneda.plata)
-                {
-                    total += item.Cantidad * item.Precio;
-                }
-                if(item.Moneyda==ETipoMoneda.bronce)
-                {
-                    total += item.Cantidad * item.Precio;
-                }
+
+               total += Moneda.SacarSaldo(item);
+
             }
             return total;
         }
@@ -129,5 +127,6 @@ namespace Entidades
             aux.billetera += m;
             return aux;
         }
+
     }
 }

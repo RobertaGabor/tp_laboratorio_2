@@ -15,6 +15,9 @@ namespace FormCompra
     public partial class FormComprarMonedas : Form
     {
         private Casino ca;
+        public Jugada primera;
+        public Jugador participante;
+
         public FormComprarMonedas()
         {
             InitializeComponent();
@@ -37,61 +40,75 @@ namespace FormCompra
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             //Jugador victima = new Jugador();
             //si compro boleto debo tener monedas de bronce ya compradas
             //revisar columna dni en dataadapter y si existe sumarle a ese sino crearlo en la bd
             //si quiere comprar boletos debe tener al menos 5 monedas de bronce
             try
             {
-
-                Jugador participante = new Jugador(txtBoxIDJugador.Text);
                 string seleccionado;
-                if(ca!=participante)
+                this.participante = Extension.BuscarJugador(this.ca, txtBoxIDJugador.Text);
+                if (this.participante==null)
                 {
+                    this.participante = new Jugador(txtBoxIDJugador.Text);
+                }//aca si existe cargo los datos del jugador
                     try
                     {
-                        if(int.Parse(txtBoxCantidadMonedas.Text) > 0)
+                        if (int.Parse(txtBoxCantidadMonedas.Text) > 0)
                         {
                             seleccionado = cmbBoxTipoMoneda.SelectedItem.ToString();
-                            BoletoChances bc = new BoletoChances();
+                            int cant = int.Parse(txtBoxCantidadMonedas.Text);
+                            this.primera = new Jugada(participante);
                             if (seleccionado!= "PLUSCHANCESTICKET")
                             {
+                                    Moneda moni=null;
                                 
-                                switch (cmbBoxTipoMoneda.SelectedItem)
-                                {
-                                    case ETipoMoneda.bronce:
-                                        Moneda moni = new Moneda(20, int.Parse(txtBoxCantidadMonedas.Text), ETipoMoneda.bronce, 3);//gana 3 veces mas
-                                        participante += moni;
-                                        break;
-                                    case ETipoMoneda.oro:
-                                        Moneda moni2 = new Moneda(65, int.Parse(txtBoxCantidadMonedas.Text), ETipoMoneda.oro, 10);//gana 3 veces mas
-                                        participante += moni2;
-                                        break;
-                                    case ETipoMoneda.plata:
-                                        Moneda moni3 = new Moneda(45, int.Parse(txtBoxCantidadMonedas.Text), ETipoMoneda.plata, 7);//gana 3 veces mas
-                                        participante += moni3;
-                                        break;
-                                }
-                                participante.Boletos = (BoletoChances)0;
-                                participante.Saldo=participante.SacarSaldo(participante.Billetera);
-                                //hacer jugada
-                                MessageBox.Show(participante.Saldo.ToString());
-                                MessageBox.Show(participante.DNI.ToString());
-                                MessageBox.Show(participante.Boletos.Cantidad.ToString());
-                                foreach(Moneda item in participante.Billetera)
-                                {
-                                    MessageBox.Show(item.Moneyda.ToString());
-                                    MessageBox.Show(item.Precio.ToString());
-                                    MessageBox.Show(item.Cantidad.ToString());
+                                    switch (cmbBoxTipoMoneda.SelectedItem)
+                                    {
+                                        case ETipoMoneda.bronce:
+                                            moni = new Moneda(20, cant, ETipoMoneda.bronce, 3);//gana 3 veces mas
+                                            participante += moni;   //si ya existe suma cantidad                        
+                                            break;
+                                        case ETipoMoneda.oro:
+                                            moni = new Moneda(65, cant, ETipoMoneda.oro, 10);//gana 3 veces mas
+                                            participante += moni;
+                                            break;
+                                        case ETipoMoneda.plata:
+                                            moni = new Moneda(45, cant, ETipoMoneda.plata, 7);//gana 3 veces mas
+                                            participante += moni;
+                                            break;
+                                    }                              
+                               
                                     
-                                }
+                                    //armar jugada
+                                    
+                                    //agrego varianza y tipo transaccion
+                                    
+                                    this.primera.Varianza = Jugada.CalcularVarianza(moni,cant,ETipoTransaccion.compra);
+                                    ///updateo data table-->que con mismo dni update esa fila, si no existe la creo
+                                    //tiro evento a form principal? para que cree una fila 
+
                             }
                             else
                             {
-                                MessageBox.Show("Antes de comprar boletos debe tener monedas de bronce en la billetera");
+                               try
+                               {
+                                  BoletoChances boletonew = new BoletoChances(cant);
+                                  participante += boletonew;
+                                  this.primera.Varianza = BoletoChances.GastoBoleto(cant);
                             }
+                               catch
+                               {
+                                  throw new insuficienteParaBoletoException($" Usted tiene en total: {participante.Boletos.Cantidad} boletos");
+                               }
+                            }
+                            this.participante.Saldo = participante.SacarSaldo(participante.Billetera);
+                            this.primera.Movimiento = ETipoTransaccion.compra;
+                            
+                            this.Close();
 
-                        }
+                    }
                         else
                         {
                             throw new cantidadInvalidaException();
@@ -101,12 +118,11 @@ namespace FormCompra
                     {
                         throw new cantidadInvalidaException(ex);
                     }
-                }
-                else
-                {
-                    //ya esta acá
-                }
-                
+                               
+            }
+            catch(insuficienteParaBoletoException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             catch(dniInvalidoException ex)
             {
@@ -119,5 +135,6 @@ namespace FormCompra
             
             
         }
+
     }
 }
