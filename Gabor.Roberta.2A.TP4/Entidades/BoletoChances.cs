@@ -32,28 +32,32 @@ namespace Entidades
 
         }
 
-        public static int GastoBoleto(int b)
+        public static int GastoBoleto(int b,int precio)
         {
-            return -(b * 5);
+            return -(precio * b * 5);
         }
 
         public static Jugador operator +(Jugador j, BoletoChances b)
         {
             int cantidadRecuperada=0;
+            bool hay = false;
 
             foreach(Moneda item in j.Billetera)
             {
-                if(item.Moneyda == ETipoMoneda.bronce&&item.Cantidad>b.Cantidad*5)
+                if(item.Moneyda == ETipoMoneda.bronce&&item.Cantidad>=b.Cantidad*5)
                 {
                     cantidadRecuperada = item.Cantidad;
                     cantidadRecuperada -= b.Cantidad * 5;
                     j.Boletos.cantidadBoletos += b.Cantidad;
-                    item.Cantidad = cantidadRecuperada;     
+                    item.Cantidad = cantidadRecuperada;
+                    hay = true;
+                    break;
                 }
-                else
-                {
-                    throw new insuficienteParaBoletoException();
-                }
+                
+            }
+            if(!hay)
+            {
+                throw new insuficienteParaBoletoException();
             }
             return j;
             //debe tener mas de 5 bronce

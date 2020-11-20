@@ -117,6 +117,7 @@
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.CancelarCompra_Click);
             // 
             // FormComprarMonedas
             // 

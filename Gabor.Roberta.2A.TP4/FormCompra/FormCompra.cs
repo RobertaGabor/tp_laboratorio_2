@@ -40,7 +40,7 @@ namespace FormCompra
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            
             //Jugador victima = new Jugador();
             //si compro boleto debo tener monedas de bronce ya compradas
             //revisar columna dni en dataadapter y si existe sumarle a ese sino crearlo en la bd
@@ -57,66 +57,68 @@ namespace FormCompra
                     {
                         if (int.Parse(txtBoxCantidadMonedas.Text) > 0)
                         {
+                            
                             seleccionado = cmbBoxTipoMoneda.SelectedItem.ToString();
                             int cant = int.Parse(txtBoxCantidadMonedas.Text);
                             this.primera = new Jugada(participante);
-                            if (seleccionado!= "PLUSCHANCESTICKET")
+                            if (seleccionado != "PLUSCHANCESTICKET")
                             {
-                                    Moneda moni=null;
-                                
-                                    switch (cmbBoxTipoMoneda.SelectedItem)
-                                    {
-                                        case ETipoMoneda.bronce:
-                                            moni = new Moneda(20, cant, ETipoMoneda.bronce, 3);//gana 3 veces mas
-                                            participante += moni;   //si ya existe suma cantidad                        
-                                            break;
-                                        case ETipoMoneda.oro:
-                                            moni = new Moneda(65, cant, ETipoMoneda.oro, 10);//gana 3 veces mas
-                                            participante += moni;
-                                            break;
-                                        case ETipoMoneda.plata:
-                                            moni = new Moneda(45, cant, ETipoMoneda.plata, 7);//gana 3 veces mas
-                                            participante += moni;
-                                            break;
-                                    }                              
-                               
-                                    
-                                    //armar jugada
-                                    
-                                    //agrego varianza y tipo transaccion
-                                    
-                                    this.primera.Varianza = Jugada.CalcularVarianza(moni,cant,ETipoTransaccion.compra);
-                                    ///updateo data table-->que con mismo dni update esa fila, si no existe la creo
-                                    //tiro evento a form principal? para que cree una fila 
+                                Moneda moni = null;
 
+                                switch (cmbBoxTipoMoneda.SelectedItem)
+                                {
+                                    case ETipoMoneda.bronce:
+                                        moni = new Moneda(20, cant, ETipoMoneda.bronce, 3);//gana 3 veces mas
+                                        participante += moni;   //si ya existe suma cantidad                        
+                                        break;
+                                    case ETipoMoneda.oro:
+                                        moni = new Moneda(65, cant, ETipoMoneda.oro, 10);//gana 3 veces mas
+                                        participante += moni;
+                                        break;
+                                    case ETipoMoneda.plata:
+                                        moni = new Moneda(45, cant, ETipoMoneda.plata, 7);//gana 3 veces mas
+                                        participante += moni;
+                                        break;
+                                }
+
+
+                                //armar jugada
+
+                                //agrego varianza y tipo transaccion
+
+                                this.primera.Varianza = Jugada.CalcularVarianza(moni, cant, ETipoTransaccion.compra);
+                                ///updateo data table-->que con mismo dni update esa fila, si no existe la creo
+                                //tiro evento a form principal? para que cree una fila 
+                                this.DialogResult = DialogResult.OK;
                             }
                             else
                             {
-                               try
-                               {
-                                  BoletoChances boletonew = new BoletoChances(cant);
-                                  participante += boletonew;
-                                  this.primera.Varianza = BoletoChances.GastoBoleto(cant);
+                                try
+                                {
+                                    BoletoChances boletonew = new BoletoChances(cant);
+                                    this.participante += boletonew;
+                                    this.primera.Varianza = BoletoChances.GastoBoleto(cant,20);
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                catch (insuficienteParaBoletoException)
+                                {
+                                    throw new insuficienteParaBoletoException($" Usted tiene en total {this.participante.CantidadMonedasSegunTipo(ETipoMoneda.bronce)} monedas de bronce");
+                                }
                             }
-                               catch
-                               {
-                                  throw new insuficienteParaBoletoException($" Usted tiene en total: {participante.Boletos.Cantidad} boletos");
-                               }
-                            }
+                             
                             this.participante.Saldo = participante.SacarSaldo(participante.Billetera);
                             this.primera.Movimiento = ETipoTransaccion.compra;
-                            
                             this.Close();
 
-                    }
+                        }
                         else
                         {
                             throw new cantidadInvalidaException();
                         }
                     }
-                    catch(Exception ex)
+                    catch(FormatException)
                     {
-                        throw new cantidadInvalidaException(ex);
+                        throw new cantidadInvalidaException();
                     }
                                
             }
@@ -136,5 +138,9 @@ namespace FormCompra
             
         }
 
+        private void CancelarCompra_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

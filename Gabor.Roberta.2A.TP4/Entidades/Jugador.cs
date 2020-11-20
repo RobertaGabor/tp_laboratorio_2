@@ -128,5 +128,19 @@ namespace Entidades
             return aux;
         }
 
+        public int CantidadMonedasSegunTipo(ETipoMoneda t)
+        {
+            int rtn = 0;
+            foreach (Moneda item in this.billetera)
+            {
+                if(item.Moneyda==t)
+                {
+                    rtn= item.Cantidad;
+                    break;
+                }
+            }
+            return rtn;
+
+        }
     }
 }
