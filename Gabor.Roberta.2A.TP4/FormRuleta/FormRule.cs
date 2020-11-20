@@ -16,9 +16,7 @@ namespace FormRuleta
         public delegate void frenarRuleta(object sender, EventArgs e);
         public event frenarRuleta frenacion;
         private bool closing;
-        
 
-        private bool win=true;
         public FormRule()
         {
             InitializeComponent();
@@ -30,14 +28,16 @@ namespace FormRuleta
             Image flipImage = picBoxRuleta.Image;
             Bitmap bitmap = new Bitmap(flipImage);
             this.closing = false;
+            
             do
             {
                 bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                 this.picBoxRuleta.Image = bitmap;
-                win = !win;/*si cerró por evento closing no gana ni pierde*/
                 Thread.Sleep(150);
 
+
             } while (true);
+            
         }
 
         private void btnSpinParar_Click(object sender, EventArgs e)

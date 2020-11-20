@@ -86,6 +86,8 @@ namespace FormBase
                 else//si no esta
                 {
                     this.empresa += this.comprar.participante;
+                    this.empresa += this.comprar.primera;
+                    //agregar jugadas
                     DataRow fila = this.dt.NewRow();
                     this.LlenarFila(fila);
                     this.dt.Rows.Add(fila);
@@ -109,6 +111,11 @@ namespace FormBase
         {
             this.juego = new FormJugar();
             this.juego.ShowDialog();
+
+
+
+
+
         }
 
         private bool ConfigurarDataAdapter()

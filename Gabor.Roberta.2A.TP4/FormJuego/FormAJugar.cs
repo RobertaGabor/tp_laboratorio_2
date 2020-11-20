@@ -16,13 +16,25 @@ namespace FormJuego
     public partial class FormJugar : Form
     {
         Thread hilo;
+        FormRule ruleta;
         private bool invoked = false;
         bool control = false;
+        Jugada segunda;
+        Jugador victima;
+        private int winLo;
+        static Random ganoperdio;
+        
+
+        static FormJugar()
+        {
+            FormJugar.ganoperdio = new Random();
+        }
         public FormJugar()
         {
             InitializeComponent();
             lblBoletos.Text = "";
             rdoButtonBoleto.Checked = false;
+
         }
 
         private void FormJugar_Load(object sender, EventArgs e)
@@ -47,45 +59,61 @@ namespace FormJuego
 
         private void btnJugar_Click(object sender, EventArgs e)
         {
-           //creo jugador auxiliar 
+            //creo jugador auxiliar 
             //if() si el boton esta checked y no tiene boletos que salte exception
             
-            if(!invoked)
+            if (!invoked)
             {
-                FormRule ruleta = new FormRule();
-                hilo = new Thread(ruleta.spinRoulette);
-
+                    ///if--> chequear que el id este, si esta lo busco en casino jugadores, y traigo todos los datos
+                    ///veo que si la cantidad del tipo de moneda que esta apostando coincide
+                    ///si tiene apretado boleto y tiene boleto esta bien, sino no puede
+                    ///si usa boleto resto boleto
+                    ///
+                    this.ruleta = new FormRule();
+                    this.ruleta.frenacion += spinStop;
+                    this.invoked = true;
                     ruleta.Show();
-                    /*llamar hilo aca?*/
-                    hilo.Start();
-                    /*llamo evento que frena ruleta*/
-                    ruleta.frenacion += spinStop;
-               
-                this.invoked = true;
-                if(rdoButtonBoleto.Checked)
-                {
-                    //resto cantidad boletos al jugador
-                }
-            }
-            else
-            {
-                //throw excception
-            }
+                    this.InicioThread();
+                    this.winLo = ganoperdio.Next(0, 50);//ya se puede guardar la variable aunque siga el hilo
+        
 
+            }
  
         }
 
+        private void InicioThread()
+        {
+            this.hilo = new Thread(this.ruleta.spinRoulette);
+            hilo.Start();
+        }
         public void spinStop(object sender, EventArgs e)
         {
             if(this.hilo.IsAlive)
             {
+
                 this.hilo.Abort();
+
+                if(e==EventArgs.Empty)
+                {
+                    if (this.winLo > 35)//mas posibilidades de perder que ganar
+                    {
+                        MessageBox.Show("Ganó");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Perdió");
+                    }
+                }
+
             }
             
             if(e!=EventArgs.Empty)
             {
+                //FormClosingEventArgs cerra = new FormClosingEventArgs(CloseReason.None, false);
                 invoked = false;
+                //this.ClosingJugar_Asegurar(sender,cerra);
             }
+            
         }
 
         private void rdioBtnChecked_Click(object sender, EventArgs e)
@@ -122,6 +150,7 @@ namespace FormJuego
             {
                 e.Cancel = true;
             }
+
         }
     }
 }

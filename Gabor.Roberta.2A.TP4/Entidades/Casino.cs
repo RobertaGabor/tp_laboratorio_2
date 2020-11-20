@@ -55,6 +55,18 @@ namespace Entidades
             return aux;
         }
 
+        public static Casino operator +(Casino c, Jugada j)
+        {
+            Casino aux = new Casino();
+            aux = c;
+
+            if(j!=null)
+            {
+                aux.jugadas.Add(j);
+            }
+            return aux;
+        }
+
 
     }
 }
