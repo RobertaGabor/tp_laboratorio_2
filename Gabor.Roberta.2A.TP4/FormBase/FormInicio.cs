@@ -14,29 +14,30 @@ using System.Data.SqlClient;
 using Entidades;
 using Excepciones;
 
+
+
 namespace FormBase
 {
     public partial class FormPadre : Form
     {
-        private SqlConnection cn;
-        private SqlDataAdapter da;
+        private AccesoDatos acces; 
         private DataTable dt;
         private Casino empresa;//lista de jugadores y lista de jugadas
         FormJugar juego;
         FormComprarMonedas comprar;
-
+        private const String PATH_XML_JUGADAS = @"DataTableJugadasDatos.xml";
+        private const String PATH_XML_JUGADAS_SCHEMA = @"DataTableJugadasSchema.xml";
+        
         public FormPadre()
         {
             InitializeComponent();
             this.empresa = new Casino();
+            acces = new AccesoDatos();
+            
+
             try
             {
-                if(!this.ConfigurarDataAdapter())
-                {
-                    MessageBox.Show("ERROR AL CONFIGURAR EL DATAADAPTER!!!");//hacer exception?
-                    this.Close();
-                }
-                     
+
                 this.dt = new DataTable("jugadas");
                 this.dt.Columns.Add("dni", typeof(int));
                 this.dt.Columns.Add("saldo", typeof(float));
@@ -46,7 +47,6 @@ namespace FormBase
 
                 try
                 {
-                    this.da.Fill(this.dt);
                     this.dtaGridView.DataSource = this.dt;
                     this.dtaGridView.MultiSelect = false;
                     this.dtaGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//para darle doble click
@@ -57,21 +57,25 @@ namespace FormBase
                     MessageBox.Show(ex.Message);
                 }
 
+                try
+                {
+                    this.empresa = SerializacionJugadores.Leer();
+                    this.empresa.Jugadas.Clear();
+                    this.CargarDataTable();
+
+                }
+                catch
+                {
+
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            try
-            {
-                this.empresa = SerializacionJugadores.Leer();
-                this.empresa.Jugadas.Clear();
-            }
-            catch(ArchivosException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
             
         }
 
@@ -94,7 +98,9 @@ namespace FormBase
                     DataRow fila = this.dt.Rows.Find(this.comprar.participante.DNI);
                     this.empresa += this.comprar.primera;
                     this.LlenarFilaComprar(fila);
-
+                    this.dt.AcceptChanges();
+                    this.acces.ModificarJuego(this.comprar.primera);
+                    
                 }
                 else//si no esta
                 {
@@ -104,8 +110,12 @@ namespace FormBase
                     DataRow fila = this.dt.NewRow();
                     this.LlenarFilaComprar(fila);
                     this.dt.Rows.Add(fila);
+                    this.dt.AcceptChanges();
+                    this.acces.InsertarJugada(this.comprar.primera);
+                    
                     
                 }
+                MessageBox.Show(this.empresa.Jugadores.Count.ToString());
             }
             ///si dialog ok : veo si ese participante esta en el casino, si no esta agrego row y a casino
             ///si esta hago un apdate en ese row de mismo dni, donde sumo la varianza con el saldo, sumo las monedas compradas
@@ -118,6 +128,7 @@ namespace FormBase
             fila["saldo"] = this.comprar.participante.Saldo;
             fila["variacion"] = this.comprar.primera.Varianza;
             fila["transaccion"] = this.comprar.primera.Movimiento;
+            
         }
         private void LlenarFilaJugar(DataRow fila)
         {
@@ -137,50 +148,14 @@ namespace FormBase
                 this.empresa += this.juego.segunda;
                 DataRow filajuego = this.dt.Rows.Find(this.juego.victima.DNI);
                 this.LlenarFilaJugar(filajuego);
+                this.dt.AcceptChanges();
+                this.acces.ModificarJuego(this.juego.segunda);
+                
             }
 
           
 
         }
-
-        private bool ConfigurarDataAdapter()
-        {
-            bool rta = false;
-
-            try
-            {
-                string host = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
-                this.cn = new SqlConnection(host);
-                this.da = new SqlDataAdapter();
-
-                this.da.SelectCommand = new SqlCommand("SELECT dni, saldo, variacion, transaccion FROM [datos_Jugada].[dbo].[jugadas]", cn);
-                this.da.InsertCommand = new SqlCommand("INSERT INTO [datos_Jugada].[dbo].[jugadas] (dni, saldo, variacion, transaccion) VALUES (@dni, @saldo, @variacion, @transaccion)", cn);
-                this.da.UpdateCommand = new SqlCommand("UPDATE [datos_Jugada].[dbo].[jugadas] SET saldo=@saldo, variacion=@variacion, transaccion=@transaccion WHERE dni=@dni", cn);
-                this.da.DeleteCommand = new SqlCommand("DELETE FROM [datos_Jugada].[dbo].[jugadas] WHERE dni=@dni", cn);
-
-                this.da.InsertCommand.Parameters.Add("@dni", SqlDbType.Int, 10, "dni");
-                this.da.InsertCommand.Parameters.Add("@saldo", SqlDbType.Float, 10, "saldo");
-                this.da.InsertCommand.Parameters.Add("@variacion", SqlDbType.Float, 10, "variacion");
-                this.da.InsertCommand.Parameters.Add("@transaccion", SqlDbType.VarChar, 50, "transaccion");
-
-                this.da.UpdateCommand.Parameters.Add("@saldo", SqlDbType.Float, 10, "saldo");
-                this.da.UpdateCommand.Parameters.Add("@variacion", SqlDbType.Float, 10, "variacion");
-                this.da.UpdateCommand.Parameters.Add("@transaccion", SqlDbType.VarChar, 50, "transaccion");
-                //this.da.UpdateCommand.Parameters.Add("@id", SqlDbType.Int, 10, "id");
-
-                this.da.DeleteCommand.Parameters.Add("@dni", SqlDbType.Int, 10, "dni");
-
-                rta = true;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
-            return rta;
-        }
-
 
         private void DobleClick(object sender, DataGridViewCellMouseEventArgs e)
         {      
@@ -207,9 +182,73 @@ namespace FormBase
             {
                 MessageBox.Show(ex.Message);
             }
-
             
-            
+            try
+            {
+                this.GuardarDataTable();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        private void GuardarDataTable()
+        {
+            try
+            {
+                this.dt.WriteXmlSchema(PATH_XML_JUGADAS_SCHEMA);
+
+                this.dt.WriteXml(PATH_XML_JUGADAS);
+
+                MessageBox.Show("Se han guardado el esquema y los datos del DataTable!!!");
+
+            }
+            catch
+            {
+                MessageBox.Show("Error al guardar el DataTable. ",
+                                "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarDataTable()
+        {
+            try
+            {
+                if (File.Exists(PATH_XML_JUGADAS_SCHEMA))
+                {
+                    this.dt = new DataTable();
+                    this.dt.ReadXmlSchema(PATH_XML_JUGADAS_SCHEMA);
+
+                    MessageBox.Show("Se ha cargado el esquema del DataTable!!!");
+                }
+                else
+                {
+                    MessageBox.Show("No existe ningún documento XML");
+                }
+
+
+                if (File.Exists(PATH_XML_JUGADAS))
+                {
+                    this.dt.ReadXml(PATH_XML_JUGADAS);
+
+                    MessageBox.Show("Se han cargado los datos del DataTable!!!");
+
+                }
+                else
+                {
+                    MessageBox.Show("No existe ningún documento XML");
+                }
+
+                this.dtaGridView.DataSource = this.dt;
+            }
+            catch
+            {
+                MessageBox.Show("Error al cargar el DataTable. ",
+                                "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
     }
 }

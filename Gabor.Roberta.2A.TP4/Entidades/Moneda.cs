@@ -23,14 +23,17 @@ namespace Entidades
         public int Precio
         {
             get { return this.precio; }
+            set { this.precio = value; }
         }
         public ETipoMoneda Moneyda
         {
             get { return this.moneda; }
+            set { this.moneda = value; }
         }
         public int Ganancia
         {
             get { return this.ganancia; }
+            set { this.ganancia = value; }
         }
         public Moneda(int precio,int canti,ETipoMoneda tipo,int ganancia)
         {

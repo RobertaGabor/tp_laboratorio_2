@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <jugadas>
+    <dni>1</dni>
+    <saldo>105</saldo>
+    <variacion>40</variacion>
+    <transaccion>compra</transaccion>
+  </jugadas>
+  <jugadas>
+    <dni>2</dni>
+    <saldo>80</saldo>
+    <variacion>20</variacion>
+    <transaccion>compra</transaccion>
+  </jugadas>
+</DocumentElement>

@@ -1,0 +1,8 @@
+2, 90, 90, compra
+
+2, 60, 100, compra
+
+2, 60, -40, pierde
+
+2, 80, 20, compra
+

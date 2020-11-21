@@ -27,6 +27,7 @@ namespace FormCompra
             :this()
         {
             this.ca = c;
+            MessageBox.Show(this.ca.Jugadores.Count.ToString());
         }
         private void FormComprarMonedas_Load_1(object sender, EventArgs e)
         {

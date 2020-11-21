@@ -19,7 +19,7 @@ namespace Entidades
 
             try
             {
-                texto.Guardar($"{dni.ToString()}.txt", juego.ToString());
+                texto.Guardar($"Partidas//{dni.ToString()}.txt", juego.ToString());//se guardan en formbase/bin/debug/partidas
                 rtn = true;
             }
             catch (Excepciones.ArchivosException e)
