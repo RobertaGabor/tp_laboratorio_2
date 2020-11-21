@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormJuego", "FormJuego\Form
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormRuleta", "FormRuleta\FormRuleta.csproj", "{1E5EFEC1-C908-46F4-AE1D-7D7E68DEC2A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archivos", "Archivos\Archivos.csproj", "{D0C37B8C-B9C4-452D-915D-69FD3D69FDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\Excepciones.csproj", "{F8F5268A-89F1-4F49-8941-BD9EEDAF1504}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{1E5EFEC1-C908-46F4-AE1D-7D7E68DEC2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5EFEC1-C908-46F4-AE1D-7D7E68DEC2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5EFEC1-C908-46F4-AE1D-7D7E68DEC2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0C37B8C-B9C4-452D-915D-69FD3D69FDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0C37B8C-B9C4-452D-915D-69FD3D69FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0C37B8C-B9C4-452D-915D-69FD3D69FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0C37B8C-B9C4-452D-915D-69FD3D69FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F5268A-89F1-4F49-8941-BD9EEDAF1504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F5268A-89F1-4F49-8941-BD9EEDAF1504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F5268A-89F1-4F49-8941-BD9EEDAF1504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F5268A-89F1-4F49-8941-BD9EEDAF1504}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

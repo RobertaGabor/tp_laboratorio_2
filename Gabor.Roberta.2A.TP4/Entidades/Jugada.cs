@@ -19,6 +19,11 @@ namespace Entidades
             this.victima = j;
         }
 
+        public Jugador Victima
+        {
+            get { return this.victima; }
+            set { this.victima = value; }
+        }
         public ETipoTransaccion Movimiento
         {
             get { return this.movimiento; }
@@ -48,6 +53,18 @@ namespace Entidades
                     break;
             }
             return rtn;
+        }
+
+        private string Mostrar()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{this.victima.DNI}, {this.victima.Saldo}, {this.varianza}, {this.movimiento.ToString()}");
+            return sb.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this.Mostrar();
         }
         //en la funcion que crear en construct??? veo que poner de win y eso en set y propiedades
     }

@@ -10,6 +10,7 @@ namespace Entidades
     {
         private List<Jugador> jugadores;
         private List<Jugada> jugadas;
+        
         public Casino()
         {
             this.jugadores = new List<Jugador>();
@@ -17,11 +18,13 @@ namespace Entidades
         }
         public List<Jugador> Jugadores
         {
-            get { return this.jugadores; }        
+            get { return this.jugadores; }   
+            set { this.jugadores = value; }
         }
         public List<Jugada> Jugadas
         {
             get { return this.jugadas; }
+            set { this.jugadas = value; }
         }
 
         public static bool operator ==(Casino c, Jugador j)

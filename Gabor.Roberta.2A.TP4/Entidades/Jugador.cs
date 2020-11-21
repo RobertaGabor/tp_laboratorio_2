@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excepciones;
 
 namespace Entidades
 {
@@ -61,7 +62,9 @@ namespace Entidades
         public List<Moneda> Billetera
         {
             get { return this.billetera; }
+            set { this.billetera = value; }
         }
+
         private static int ValidarDni(int dato)
         {
                     if (dato < 1 || dato > 89999999)
@@ -163,6 +166,21 @@ namespace Entidades
                 }
             }
             return aux;
+        }
+
+        private string Mostrar()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(Moneda item in this.billetera)
+            {
+                sb.AppendLine(item.ToString());   
+            }
+            sb.AppendLine("Boletos: " + this.boletos.Cantidad);
+            return sb.ToString();
+        }
+        public override string ToString()
+        {
+            return this.Mostrar();
         }
     }
 }

@@ -108,6 +108,7 @@
             this.Name = "FormPadre";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hazte millonario!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingGuardado_FormBase);
             ((System.ComponentModel.ISupportInitialize)(this.dtaGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

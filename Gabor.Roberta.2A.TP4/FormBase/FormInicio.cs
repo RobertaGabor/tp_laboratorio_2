@@ -12,6 +12,7 @@ using FormJuego;
 using System.IO;
 using System.Data.SqlClient;
 using Entidades;
+using Excepciones;
 
 namespace FormBase
 {
@@ -20,7 +21,7 @@ namespace FormBase
         private SqlConnection cn;
         private SqlDataAdapter da;
         private DataTable dt;
-        private Casino empresa;
+        private Casino empresa;//lista de jugadores y lista de jugadas
         FormJugar juego;
         FormComprarMonedas comprar;
 
@@ -61,6 +62,17 @@ namespace FormBase
             {
                 MessageBox.Show(ex.Message);
             }
+
+            try
+            {
+                this.empresa = SerializacionJugadores.Leer();
+                this.empresa.Jugadas.Clear();
+            }
+            catch(ArchivosException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -119,9 +131,13 @@ namespace FormBase
             this.juego = new FormJugar(this.empresa);
             this.juego.ShowDialog();
 
+            if(this.juego.segunda!=null)
+            {
                 this.empresa += this.juego.segunda;
                 DataRow filajuego = this.dt.Rows.Find(this.juego.victima.DNI);
                 this.LlenarFilaJugar(filajuego);
+            }
+
           
 
         }
@@ -166,9 +182,33 @@ namespace FormBase
 
 
         private void DobleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            MessageBox.Show("hola");//traer un id de esa fila y recorrer casino lista de jugadores y sacar la cantidad de monedas de ahi.
+        {      
+            int i = this.dtaGridView.SelectedRows[0].Index;
+            DataRow fila = this.dt.Rows[i];
+            string dni=fila[0].ToString();
+            Jugador buscado=Extension.BuscarJugador(this.empresa, dni);
+            
+            MessageBox.Show(buscado.ToString());//traer un id de esa fila y recorrer casino lista de jugadores y sacar la cantidad de monedas de ahi.
         }
 
+        private void ClosingGuardado_FormBase(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                foreach (Jugada item in this.empresa.Jugadas)
+                {
+                    SerializacionPartidas.Guardar(item);
+                }
+
+                SerializacionJugadores.Guardar(this.empresa);
+            } 
+            catch(ArchivosException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
+            
+        }
     }
 }

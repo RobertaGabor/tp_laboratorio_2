@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excepciones;
 
 namespace Entidades
 {
@@ -116,7 +117,10 @@ namespace Entidades
             return aux;
         }
 
-
+        public override string ToString()
+        {
+            return moneda.ToString()+$": {this.cantidad}";
+        }
         public override int GetHashCode()
         {
             return base.GetHashCode();

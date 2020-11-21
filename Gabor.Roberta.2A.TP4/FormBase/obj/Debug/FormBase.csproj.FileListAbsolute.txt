@@ -20,3 +20,7 @@ C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\Form
 C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\FormRuleta.exe
 C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\FormRuleta.pdb
 C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\FormRuleta.exe.config
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\Archivos.dll
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\Excepciones.dll
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\Archivos.pdb
+C:\Users\TCL\Desktop\UTN\PROGRAMACION\tp_laboratorio_2\Gabor.Roberta.2A.TP4\FormBase\bin\Debug\Excepciones.pdb

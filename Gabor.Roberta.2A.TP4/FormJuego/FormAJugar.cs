@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Entidades;
 using FormRuleta;
 using System.Threading;
+using Excepciones;
 
 namespace FormJuego
 {
@@ -19,7 +20,7 @@ namespace FormJuego
         FormRule ruleta;
         private bool invoked = false;
         bool control = false;
-        public Jugada segunda;//hago getter?
+        public Jugada segunda=null;//hago getter?
         public Jugador victima;
         private int winLo;
         static Random ganoperdio;

@@ -42,17 +42,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoletoChances.cs" />
-    <Compile Include="cantidadInvalidaEx.cs" />
     <Compile Include="Casino.cs" />
-    <Compile Include="dniInvalidoEx.cs" />
     <Compile Include="ETipoTransaccion.cs" />
     <Compile Include="Extension.cs" />
-    <Compile Include="insuficienteParaBoletoEx.cs" />
+    <Compile Include="JugadoresXml.cs" />
     <Compile Include="Jugada.cs" />
     <Compile Include="ETipoMoneda.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Moneda.cs" />
+    <Compile Include="PartidasTexto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Archivos\Archivos.csproj">
+      <Project>{d0c37b8c-b9c4-452d-915d-69fd3d69fddd}</Project>
+      <Name>Archivos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Excepciones\Excepciones.csproj">
+      <Project>{f8f5268a-89f1-4f49-8941-bd9eedaf1504}</Project>
+      <Name>Excepciones</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
