@@ -19,15 +19,21 @@ namespace FormJuego
         FormRule ruleta;
         private bool invoked = false;
         bool control = false;
-        Jugada segunda;
-        Jugador victima;
+        public Jugada segunda;//hago getter?
+        public Jugador victima;
         private int winLo;
         static Random ganoperdio;
+        private Casino ca;
         
 
         static FormJugar()
         {
             FormJugar.ganoperdio = new Random();
+        }
+        public FormJugar(Casino c)
+            : this()
+        {
+            this.ca = c;
         }
         public FormJugar()
         {
@@ -61,22 +67,101 @@ namespace FormJuego
         {
             //creo jugador auxiliar 
             //if() si el boton esta checked y no tiene boletos que salte exception
+            int cantidadJ;
             
             if (!invoked)
             {
-                    ///if--> chequear que el id este, si esta lo busco en casino jugadores, y traigo todos los datos
-                    ///veo que si la cantidad del tipo de moneda que esta apostando coincide
-                    ///si tiene apretado boleto y tiene boleto esta bien, sino no puede
-                    ///si usa boleto resto boleto
-                    ///
-                    this.ruleta = new FormRule();
-                    this.ruleta.frenacion += spinStop;
-                    this.invoked = true;
-                    ruleta.Show();
-                    this.InicioThread();
-                    this.winLo = ganoperdio.Next(0, 50);//ya se puede guardar la variable aunque siga el hilo
-        
+                ///if--> chequear que el id este, si esta lo busco en casino jugadores, y traigo todos los datos
+                ///veo que si la cantidad del tipo de moneda que esta apostando coincide
+                ///si tiene apretado boleto y tiene boleto esta bien, sino no puede
+                ///si usa boleto resto boleto
+                
 
+                try
+                {
+                    if ((this.victima = Extension.BuscarJugador(this.ca, txtBoxIDAJugar.Text)) != null)
+                    {
+                        try
+                        {
+                            cantidadJ = int.Parse(txtCantidadAJugar.Text);
+                            ETipoMoneda money = (ETipoMoneda)cmbBoxAJugar.SelectedItem;
+                            int ganancia = Moneda.SacarGanancia(money);
+                            if (this.victima.CantidadMonedasSegunTipo(money) >= cantidadJ)
+                            {
+
+                                //recorrer billetera y buscar la moneda con el mismo tipo, y de ahi sacar su info
+                                if ((rdoButtonBoleto.Checked&&this.victima.Boletos.Cantidad>0)|| rdoButtonBoleto.Checked==false)
+                                {
+                                    this.ruleta = new FormRule();
+                                    this.ruleta.frenacion += spinStop;
+                                    this.invoked = true;
+                                    ruleta.Show();
+                                    this.InicioThread();
+
+                                    if((rdoButtonBoleto.Checked && this.victima.Boletos.Cantidad > 0))//arreglar
+                                    {
+                                        BoletoChances apuesto = new BoletoChances(1);
+                                        this.victima -= apuesto;
+                                    }
+                                    
+
+                                    Moneda apostada = new Moneda(Moneda.SacarPrecio(money), cantidadJ, money, ganancia);
+                                    this.segunda = new Jugada(this.victima);
+                                    this.winLo = ganoperdio.Next(0, 50);
+                                    if (this.winLo > 35)
+                                    {
+                                        this.segunda.Varianza = Jugada.CalcularVarianza(apostada, cantidadJ, ETipoTransaccion.gana);
+                                        apostada.Cantidad = apostada.Cantidad * ganancia;//genero las ganancias
+                                        this.victima += apostada;//como ya existe solo suma cantidad
+                                        //sacar saldo y actualizarlo en ganancias
+                                        //poner transaccion gano
+                                        this.segunda.Movimiento = ETipoTransaccion.gana;
+                                    }
+                                    else
+                                    {
+                                        ///ver que declaraciones uso abajo y aca
+                                        this.segunda.Movimiento = ETipoTransaccion.pierde;
+                                        this.segunda.Varianza = Jugada.CalcularVarianza(apostada, cantidadJ, ETipoTransaccion.pierde);
+                                        this.victima -= apostada;
+                                    }
+                                    this.victima.Saldo = this.victima.SacarSaldo(this.victima.Billetera);
+                      
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No le alcanzan los boletos");
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("No tiene las monedas suficientes para jugar");
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            throw new cantidadInvalidaException();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encuentra ese dni en la lista de jugadores disponibles");
+                    }
+                }
+                catch(cantidadInvalidaException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch(dniInvalidoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch(insuficienteParaBoletoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                    
             }
  
         }

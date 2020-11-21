@@ -127,6 +127,14 @@ namespace Entidades
             aux.billetera += m;
             return aux;
         }
+        public static Jugador operator -(Jugador j, Moneda m)
+        {
+            Jugador aux = new Jugador();        
+            aux = j;
+            aux.billetera -= m;
+            
+            return aux;
+        }
 
         public int CantidadMonedasSegunTipo(ETipoMoneda t)
         {
@@ -141,6 +149,20 @@ namespace Entidades
             }
             return rtn;
 
+        }
+
+        public static Moneda BuscarMoneda(Jugador j, ETipoMoneda tipo)
+        {
+            Moneda aux = null;
+            foreach (Moneda item in j.Billetera)
+            {
+                if (item.Moneyda==tipo)
+                {
+                    aux = item;
+                    break;
+                }
+            }
+            return aux;
         }
     }
 }

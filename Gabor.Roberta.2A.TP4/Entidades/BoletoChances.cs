@@ -62,5 +62,10 @@ namespace Entidades
             return j;
             //debe tener mas de 5 bronce
         }
+        public static Jugador operator -(Jugador j, BoletoChances b)
+        {
+            j.Boletos.cantidadBoletos -= 1;
+            return j;
+        }
     }
 }

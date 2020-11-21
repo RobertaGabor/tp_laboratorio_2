@@ -68,15 +68,15 @@ namespace FormCompra
                                 switch (cmbBoxTipoMoneda.SelectedItem)
                                 {
                                     case ETipoMoneda.bronce:
-                                        moni = new Moneda(20, cant, ETipoMoneda.bronce, 3);//gana 3 veces mas
+                                        moni = new Moneda(Moneda.SacarPrecio(ETipoMoneda.bronce), cant, ETipoMoneda.bronce, Moneda.SacarGanancia(ETipoMoneda.bronce));//gana 3 veces mas
                                         participante += moni;   //si ya existe suma cantidad                        
                                         break;
                                     case ETipoMoneda.oro:
-                                        moni = new Moneda(65, cant, ETipoMoneda.oro, 10);//gana 3 veces mas
+                                        moni = new Moneda(Moneda.SacarPrecio(ETipoMoneda.oro), cant, ETipoMoneda.oro, Moneda.SacarGanancia(ETipoMoneda.oro));//gana 3 veces mas
                                         participante += moni;
                                         break;
                                     case ETipoMoneda.plata:
-                                        moni = new Moneda(45, cant, ETipoMoneda.plata, 7);//gana 3 veces mas
+                                        moni = new Moneda(Moneda.SacarPrecio(ETipoMoneda.plata), cant, ETipoMoneda.plata, Moneda.SacarGanancia(ETipoMoneda.plata));//gana 3 veces mas
                                         participante += moni;
                                         break;
                                 }

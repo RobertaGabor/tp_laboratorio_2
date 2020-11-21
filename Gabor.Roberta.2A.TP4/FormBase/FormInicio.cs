@@ -80,7 +80,7 @@ namespace FormBase
                 {
                     //update row
                     DataRow fila = this.dt.Rows.Find(this.comprar.participante.DNI);
-                    this.LlenarFila(fila);
+                    this.LlenarFilaComprar(fila);
 
                 }
                 else//si no esta
@@ -89,7 +89,7 @@ namespace FormBase
                     this.empresa += this.comprar.primera;
                     //agregar jugadas
                     DataRow fila = this.dt.NewRow();
-                    this.LlenarFila(fila);
+                    this.LlenarFilaComprar(fila);
                     this.dt.Rows.Add(fila);
                     
                 }
@@ -99,22 +99,30 @@ namespace FormBase
             ///si compro boleto sumo boleto y resto moneda de bronce
             
         }
-        private void LlenarFila(DataRow fila)
+        private void LlenarFilaComprar(DataRow fila)///METODO DE EXTENSION INTERFAZ???
         {
             fila["dni"] = this.comprar.participante.DNI;
             fila["saldo"] = this.comprar.participante.Saldo;
             fila["variacion"] = this.comprar.primera.Varianza;
             fila["transaccion"] = this.comprar.primera.Movimiento;
         }
+        private void LlenarFilaJugar(DataRow fila)
+        {
+            fila["dni"] = this.juego.victima.DNI;
+            fila["saldo"] = this.juego.victima.Saldo;
+            fila["variacion"] = this.juego.segunda.Varianza;
+            fila["transaccion"] = this.juego.segunda.Movimiento;
+        }
 
         private void btnAJugar_Click(object sender, EventArgs e)
         {
-            this.juego = new FormJugar();
+            this.juego = new FormJugar(this.empresa);
             this.juego.ShowDialog();
 
-
-
-
+                this.empresa += this.juego.segunda;
+                DataRow filajuego = this.dt.Rows.Find(this.juego.victima.DNI);
+                this.LlenarFilaJugar(filajuego);
+          
 
         }
 

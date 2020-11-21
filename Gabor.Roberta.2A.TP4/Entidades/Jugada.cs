@@ -41,7 +41,7 @@ namespace Entidades
                     rtn = m.Precio* cantidad;
                     break;
                 case ETipoTransaccion.gana:
-                    rtn = m.ProbabilidadesEnGanancias(cantidad);
+                    rtn = m.Precio*m.Cantidad*m.Ganancia;
                     break;
                 case ETipoTransaccion.pierde:
                     rtn = -(m.Precio * cantidad);
