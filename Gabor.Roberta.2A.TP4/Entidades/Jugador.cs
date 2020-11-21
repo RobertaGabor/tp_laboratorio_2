@@ -29,7 +29,14 @@ namespace Entidades
         {
             this.StringToDNI = dni;
         }
-        public BoletoChances Boletos
+        public Jugador(int dni,float saldo,BoletoChances boleto,List<Moneda>bolsillo)
+            :this(dni)
+        {
+            this.saldo = saldo;
+            this.boletos = boleto;
+            this.billetera = bolsillo;
+        }
+        public BoletoChances Boletos//no necesito hacer todo public despues ver
         {
             get { return this.boletos; }
             set { this.boletos = value; }

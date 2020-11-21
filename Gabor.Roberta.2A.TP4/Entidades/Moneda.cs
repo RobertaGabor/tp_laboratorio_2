@@ -14,6 +14,7 @@ namespace Entidades
         protected int cantidad;
         protected int ganancia;
 
+        public Moneda() { }
         public int Cantidad
         {
             get { return this.cantidad; }

@@ -15,10 +15,17 @@ namespace Entidades
 
         public Jugada(){}
         public Jugada(Jugador j)
+            :this()
         {
             this.victima = j;
         }
 
+        public Jugada(Jugador j, float varianza, ETipoTransaccion transa)
+            :this(j)
+        {
+            this.varianza = varianza;
+            this.movimiento = transa;
+        }
         public Jugador Victima
         {
             get { return this.victima; }

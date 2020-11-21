@@ -92,6 +92,7 @@ namespace FormBase
                 {
                     //update row
                     DataRow fila = this.dt.Rows.Find(this.comprar.participante.DNI);
+                    this.empresa += this.comprar.primera;
                     this.LlenarFilaComprar(fila);
 
                 }

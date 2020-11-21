@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public sealed class Casino
+    public class Casino
     {
         private List<Jugador> jugadores;
         private List<Jugada> jugadas;
