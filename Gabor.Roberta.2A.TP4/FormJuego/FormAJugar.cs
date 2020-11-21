@@ -85,6 +85,10 @@ namespace FormJuego
                         try
                         {
                             cantidadJ = int.Parse(txtCantidadAJugar.Text);
+                            if(cantidadJ<0)
+                            {
+                                throw new FormatException();
+                            }
                             ETipoMoneda money = (ETipoMoneda)cmbBoxAJugar.SelectedItem;
                             int ganancia = Moneda.SacarGanancia(money);
                             if (this.victima.CantidadMonedasSegunTipo(money) >= cantidadJ)

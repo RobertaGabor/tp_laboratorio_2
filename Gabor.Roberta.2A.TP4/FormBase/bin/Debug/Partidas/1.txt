@@ -1,6 +1,8 @@
-1, 65, 65, compra
+1, 200, 200, compra
 
-1, 65, 65, compra
+1, 140, 60, gana
 
-1, 105, 40, compra
+1, 140, -100, compra
+
+1, 140, -20, pierde
 

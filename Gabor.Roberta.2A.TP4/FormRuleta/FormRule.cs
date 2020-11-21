@@ -15,14 +15,14 @@ namespace FormRuleta
     {
         public delegate void frenarRuleta(object sender, EventArgs e);
         public event frenarRuleta frenacion;
-        private bool closing;
+        private bool closing;//chequea si puso frenar o no
 
         public FormRule()
         {
             InitializeComponent();
         }
 
-        /*hacer hilo aca?*/
+
         public void spinRoulette()
         {
             Image flipImage = picBoxRuleta.Image;

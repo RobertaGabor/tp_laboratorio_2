@@ -8,14 +8,20 @@ namespace Entidades
 {
     public class Casino
     {
+        #region atributos
         private List<Jugador> jugadores;
         private List<Jugada> jugadas;
-        
+        #endregion atributos
+
+        #region constructores
         public Casino()
         {
             this.jugadores = new List<Jugador>();
             this.jugadas = new List<Jugada>();
         }
+        #endregion
+
+        #region getters y setter serializacion
         public List<Jugador> Jugadores
         {
             get { return this.jugadores; }   
@@ -26,7 +32,9 @@ namespace Entidades
             get { return this.jugadas; }
             set { this.jugadas = value; }
         }
+        #endregion
 
+        #region metodos y sobrecargas
         public static bool operator ==(Casino c, Jugador j)
         {
             bool rtn = false;
@@ -69,7 +77,7 @@ namespace Entidades
             }
             return aux;
         }
-
+        #endregion
 
     }
 }

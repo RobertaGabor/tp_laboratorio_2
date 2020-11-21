@@ -8,11 +8,13 @@ namespace Entidades
 {
     public class Jugada
     {
-        /*atributos*/ /*hacer propiedades para serializar*/
+        #region atributos
         protected Jugador victima;
         protected float varianza;
         protected ETipoTransaccion movimiento;
+        #endregion
 
+        #region constructores
         public Jugada(){}
         public Jugada(Jugador j)
             :this()
@@ -26,6 +28,9 @@ namespace Entidades
             this.varianza = varianza;
             this.movimiento = transa;
         }
+        #endregion
+
+        #region setter y getter serializacion
         public Jugador Victima
         {
             get { return this.victima; }
@@ -42,7 +47,9 @@ namespace Entidades
             get { return this.varianza; }
             set { this.varianza = value; }
         }
+        #endregion
 
+        #region metodos y sobrecargas
         public static float CalcularVarianza(Moneda m,int cantidad,ETipoTransaccion win)
         {
             float rtn = 0;
@@ -73,6 +80,6 @@ namespace Entidades
         {
             return this.Mostrar();
         }
-        //en la funcion que crear en construct??? veo que poner de win y eso en set y propiedades
+        #endregion
     }
 }

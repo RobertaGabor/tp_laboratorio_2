@@ -9,11 +9,14 @@ namespace Entidades
 {
     public class Jugador
     {
+        #region atributos
         protected int dni;
         protected float saldo;
         protected BoletoChances boletos;
         protected List<Moneda> billetera;
+        #endregion
 
+        #region constructores
         public Jugador()
         {
             this.billetera = new List<Moneda>();
@@ -36,6 +39,9 @@ namespace Entidades
             this.boletos = boleto;
             this.billetera = bolsillo;
         }
+        #endregion
+
+        #region setter y getters serializacion
         public BoletoChances Boletos//no necesito hacer todo public despues ver
         {
             get { return this.boletos; }
@@ -72,6 +78,9 @@ namespace Entidades
             set { this.billetera = value; }
         }
 
+        #endregion
+
+        #region validaciones
         private static int ValidarDni(int dato)
         {
                     if (dato < 1 || dato > 89999999)
@@ -98,7 +107,9 @@ namespace Entidades
 
             return Jugador.ValidarDni(numeroDni);
         }
+        #endregion
 
+        #region metodos y sobrecargas
         public static bool operator ==(Jugador j, Jugador jj)
         {
             if((object)j==null&&(object)jj==null)
@@ -189,5 +200,7 @@ namespace Entidades
         {
             return this.Mostrar();
         }
+
+        #endregion
     }
 }
