@@ -10,6 +10,11 @@ namespace Entidades
 {
     public class SerializacionJugadores
     {
+        /// <summary>
+        /// metodo que serializa un objeto casino xml
+        /// </summary>
+        /// <param name="jugadores"></param>
+        /// <returns></returns>
         public static bool Guardar(Casino jugadores)
         {
             bool rtn = false;
@@ -29,7 +34,10 @@ namespace Entidades
             return rtn;
         }
 
-
+        /// <summary>
+        /// metodo que lee un objeto casino xml
+        /// </summary>
+        /// <returns></returns>
         public static Casino Leer()
         {
             Casino informacion = new Casino();

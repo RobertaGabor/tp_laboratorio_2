@@ -14,6 +14,9 @@ namespace Entidades
         #endregion atributos
 
         #region constructores
+        /// <summary>
+        /// constructor defaulr que inicializa las listas
+        /// </summary>
         public Casino()
         {
             this.jugadores = new List<Jugador>();
@@ -35,6 +38,12 @@ namespace Entidades
         #endregion
 
         #region metodos y sobrecargas
+        /// <summary>
+        /// metodo que verifica si un jugador ya esta en el casino
+        /// </summary>
+        /// <param name="c">casino</param>
+        /// <param name="j">jugador</param>
+        /// <returns>true si esta sino false</returns>
         public static bool operator ==(Casino c, Jugador j)
         {
             bool rtn = false;
@@ -54,7 +63,12 @@ namespace Entidades
         {
             return !(c == j);
         }
-
+        /// <summary>
+        /// metodo que agrega un jugador al casino si este ya no esta en el
+        /// </summary>
+        /// <param name="c">casino</param>
+        /// <param name="j">jugador</param>
+        /// <returns>Casino con los jugaores modificados</returns>
         public static Casino operator +(Casino c, Jugador j)
         {
             Casino aux = new Casino();
@@ -65,7 +79,12 @@ namespace Entidades
             }
             return aux;
         }
-
+        /// <summary>
+        /// metodo que agrega jugadas al casino si esta se efectuo
+        /// </summary>
+        /// <param name="c">casino</param>
+        /// <param name="j">jugada</param>
+        /// <returns>Casino con las jugadas modificadas</returns>
         public static Casino operator +(Casino c, Jugada j)
         {
             Casino aux = new Casino();
@@ -77,7 +96,12 @@ namespace Entidades
             }
             return aux;
         }
-
+        /// <summary>
+        /// busca un jugador en el casino por dni INT, si no esta devuelve null sino al jugador
+        /// </summary>
+        /// <param name="c">casino</param>
+        /// <param name="dni">jugador</param>
+        /// <returns>null sino esta sino al Jugador</returns>
         public static Jugador BuscarJugador(Casino c, int dni)
         {
             Jugador aux = null;
@@ -91,6 +115,12 @@ namespace Entidades
             }
             return aux;
         }
+        /// <summary>
+        /// busca un jugador en el casino por dni STRING, si no esta devuelve null sino al jugador
+        /// </summary>
+        /// <param name="c">casino</param>
+        /// <param name="dni">jugador</param>
+        /// <returns>null sino esta sino al Jugador</returns>
         public static Jugador BuscarJugador(Casino c, string dni)
         {
             Jugador aux = null;

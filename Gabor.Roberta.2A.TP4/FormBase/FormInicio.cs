@@ -83,7 +83,12 @@ namespace FormBase
         {
             this.Close();
         }
-
+        /// <summary>
+        /// evento que al apretar comprar abre el Form Comprar y update el Datatable y la Base de datos con los nuevos datos
+        /// de ese form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnComprar_Click(object sender, EventArgs e)
         {
             
@@ -116,6 +121,10 @@ namespace FormBase
                 }
             }  
         }
+        /// <summary>
+        /// Llena una fila con datos del form Compra
+        /// </summary>
+        /// <param name="fila"></param>
         private void LlenarFilaComprar(DataRow fila)
         {
             fila["dni"] = this.comprar.participante.DNI;
@@ -124,6 +133,10 @@ namespace FormBase
             fila["transaccion"] = this.comprar.primera.Movimiento;
             
         }
+        /// <summary>
+        /// Llena fila con datos de form Juego
+        /// </summary>
+        /// <param name="fila"></param>
         private void LlenarFilaJugar(DataRow fila)
         {
             fila["dni"] = this.juego.victima.DNI;
@@ -131,7 +144,12 @@ namespace FormBase
             fila["variacion"] = this.juego.segunda.Varianza;
             fila["transaccion"] = this.juego.segunda.Movimiento;
         }
-
+        /// <summary>
+        /// Evento que al apretar el boton Jugar, abre otro form Juego, que modifica un row del Datatable con los 
+        /// datos generados en ese form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAJugar_Click(object sender, EventArgs e)
         {
             this.juego = new FormJugar(this.empresa);
@@ -150,7 +168,11 @@ namespace FormBase
           
 
         }
-
+        /// <summary>
+        /// Evento que al dar doble click en una fila de la datatable me muestre la billetera actual de ese jugador
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DobleClick(object sender, DataGridViewCellMouseEventArgs e)
         {      
             int i = this.dtaGridView.SelectedRows[0].Index;
@@ -160,7 +182,12 @@ namespace FormBase
             
             MessageBox.Show(buscado.ToString());
         }
-
+        /// <summary>
+        /// Evento que al estar cerrandose el form serializa la datatable y el Casino en xml y las jugadas 
+        /// de cada usuario en un txt distinto en una carpeta Partidas en FormBase/bin/Debug
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClosingGuardado_FormBase(object sender, FormClosingEventArgs e)
         {
             try
@@ -186,7 +213,9 @@ namespace FormBase
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Metodo que serializa datatable en xml
+        /// </summary>
         private void GuardarDataTable()
         {
             try
@@ -202,7 +231,9 @@ namespace FormBase
                                 "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /// <summary>
+        /// Metodo que carga un xml de datatable
+        /// </summary>
         private void CargarDataTable()
         {
             try

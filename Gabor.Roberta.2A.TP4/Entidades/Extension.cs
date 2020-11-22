@@ -9,6 +9,11 @@ namespace Entidades
 {
     public static class Extension
     {
+        /// <summary>
+        /// metodo de extension que muestra los precios de las monedas de un casino
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public static string MostrarMonedas(this Casino tipo)
         {
             StringBuilder sb = new StringBuilder();

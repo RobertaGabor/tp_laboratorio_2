@@ -18,16 +18,27 @@ namespace FormCompra
         private Casino ca;
         public Jugada primera;
         public Jugador participante;
-
+        /// <summary>
+        /// constructor que inicializa el form
+        /// </summary>
         public FormComprarMonedas()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// constructor que inicializa el form pasandole un casino
+        /// </summary>
+        /// <param name="c"></param>
         public FormComprarMonedas(Casino c)
             :this()
         {
             this.ca = c;
         }
+        /// <summary>
+        /// carga el form y el combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormComprarMonedas_Load_1(object sender, EventArgs e)
         {
             foreach (ETipoMoneda item in Enum.GetValues(typeof(ETipoMoneda)))
@@ -38,7 +49,12 @@ namespace FormCompra
             this.cmbBoxTipoMoneda.SelectedItem = ETipoMoneda.oro;
             this.cmbBoxTipoMoneda.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
+        /// <summary>
+        /// Al apretar el botn aceptar se efectua una compra si los datos estan correctos y se genera la nueva informacion del
+        /// usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {        
             try
@@ -125,12 +141,20 @@ namespace FormCompra
             
             
         }
-
+        /// <summary>
+        /// cancela la compra
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelarCompra_Click(object sender, EventArgs e)
         {          
             this.Close();
         }
-
+        /// <summary>
+        /// muestra los precios vigentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreguntaPrecio_Click(object sender, EventArgs e)//devuelve precios de monedas
         {
             MessageBox.Show(Extension.MostrarMonedas(this.ca));

@@ -8,14 +8,20 @@
   </jugadas>
   <jugadas>
     <dni>2</dni>
-    <saldo>450</saldo>
-    <variacion>315</variacion>
-    <transaccion>gana</transaccion>
+    <saldo>555</saldo>
+    <variacion>65</variacion>
+    <transaccion>compra</transaccion>
   </jugadas>
   <jugadas>
     <dni>4</dni>
-    <saldo>220</saldo>
-    <variacion>45</variacion>
+    <saldo>155</saldo>
+    <variacion>-65</variacion>
     <transaccion>pierde</transaccion>
+  </jugadas>
+  <jugadas>
+    <dni>5</dni>
+    <saldo>215</saldo>
+    <variacion>60</variacion>
+    <transaccion>gana</transaccion>
   </jugadas>
 </DocumentElement>

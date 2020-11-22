@@ -8,6 +8,9 @@ namespace TestUnitarios
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// Test de validacion de DNI
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(dniInvalidoException))]
         public void DNI_InvalidoArgentino_Alto()
@@ -16,6 +19,9 @@ namespace TestUnitarios
 
             Jugador player = new Jugador(dni);
         }
+        /// <summary>
+        /// Test que verifica desigualdad de jugadores
+        /// </summary>
         [TestMethod]
         public void IgualdadJugadores()
         {
@@ -25,6 +31,9 @@ namespace TestUnitarios
             bool rta = uno == dos;
             Assert.IsFalse(rta);
         }
+        /// <summary>
+        /// Test que corrobora que no se agreguen 2 jugadores iguales
+        /// </summary>
         [TestMethod]
         public void Agregar_JugadorCasino()
         {

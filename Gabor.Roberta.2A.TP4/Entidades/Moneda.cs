@@ -17,7 +17,17 @@ namespace Entidades
         #endregion
 
         #region constructores
+        /// <summary>
+        /// constructor por default para serializacion
+        /// </summary>
         public Moneda() { }
+        /// <summary>
+        /// constructor con parametros
+        /// </summary>
+        /// <param name="precio">precio de la moneda</param>
+        /// <param name="canti">cantidad de esa moneda</param>
+        /// <param name="tipo">Tipo de moneda</param>
+        /// <param name="ganancia">ganancia el promedio de cuanto se gana (cuantas veces se gana)</param>
         public Moneda(int precio, int canti, ETipoMoneda tipo, int ganancia)
         {
             this.precio = precio;
@@ -52,24 +62,45 @@ namespace Entidades
         #endregion
 
         #region metodos y sobrecargas
+        /// <summary>
+        /// metodo que a una moneda le suma la cantidad
+        /// </summary>
+        /// <param name="m">moneda</param>
+        /// <param name="numero">cantidad a sumar</param>
+        /// <returns>devuelve la moneda con la cantidad modificada</returns>
         public static Moneda operator +(Moneda m,int numero)
         {
             m.cantidad += numero;
             return m;
 
         }
+        /// <summary>
+        /// metodo que a una moneda le resta la cantidad
+        /// </summary>
+        /// <param name="m">moneda</param>
+        /// <param name="numero">cantidad a restar</param>
+        /// <returns>devuelve la moneda con la cantidad modificada</returns>
         public static Moneda operator -(Moneda m, int numero)
         {
             m.cantidad -= numero;
             return m;
 
         }
-        
+        /// <summary>
+        /// metodo que obtiene saldo de una moneda
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static float SacarSaldo(Moneda e)
         {
             return e.cantidad * e.precio;
         }
-
+        /// <summary>
+        /// metodo que verifica igualda de dos monedas por tipo
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="mm"></param>
+        /// <returns></returns>
         public static bool operator ==(Moneda m,Moneda mm)
         {
             if(m.moneda==mm.moneda)
@@ -82,7 +113,12 @@ namespace Entidades
         {
             return !(m == mm);
         }
-
+        /// <summary>
+        /// metodo que agrega una moneda a la lista de monedas si no existes, sino suma su cantidad
+        /// </summary>
+        /// <param name="l">lista d emonedas</param>
+        /// <param name="m">moneda a sumar</param>
+        /// <returns></returns>
         public static List<Moneda> operator +(List<Moneda> l, Moneda m)
         {
             List<Moneda> aux = new List<Moneda>();
@@ -109,6 +145,12 @@ namespace Entidades
             }
             return l;
         }
+        /// <summary>
+        /// resta la cantidad de una moneda en una lista
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public static List<Moneda> operator -(List<Moneda> l, Moneda m)
         {
             List<Moneda> aux = new List<Moneda>();
@@ -143,7 +185,11 @@ namespace Entidades
             }
             return rtn;
         }
-
+        /// <summary>
+        /// valida una cantidad de numero nattural
+        /// </summary>
+        /// <param name="cant"></param>
+        /// <returns></returns>
         private static int ValidarCantidad(int cant)
         {
             if (cant < 0)
@@ -151,7 +197,11 @@ namespace Entidades
 
             return cant;
         }
-
+        /// <summary>
+        /// devuelve la ganancia que genera cada moneda
+        /// </summary>
+        /// <param name="tipo">tipo de moneda</param>
+        /// <returns></returns>
         public static int SacarGanancia(ETipoMoneda tipo)
         {
             int rtn=0;
@@ -169,6 +219,11 @@ namespace Entidades
             }
             return rtn;
         }
+        /// <summary>
+        /// devuelve el precio de cada moneda
+        /// </summary>
+        /// <param name="tipo">tipo de moneda</param>
+        /// <returns></returns>
         public static int SacarPrecio(ETipoMoneda tipo)
         {
             int rtn = 0;

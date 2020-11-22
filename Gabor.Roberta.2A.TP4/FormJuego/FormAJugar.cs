@@ -27,16 +27,25 @@ namespace FormJuego
         static Random ganoperdio;
         private Casino ca;
         
-
+        /// <summary>
+        /// constructor que inicializa el numero Random
+        /// </summary>
         static FormJugar()
         {
             FormJugar.ganoperdio = new Random();
         }
+        /// <summary>
+        /// constructor que le pasa un casino
+        /// </summary>
+        /// <param name="c"></param>
         public FormJugar(Casino c)
             : this()
         {
             this.ca = c;
         }
+        /// <summary>
+        /// constructor que inicializa el form
+        /// </summary>
         public FormJugar()
         {
             InitializeComponent();
@@ -44,7 +53,11 @@ namespace FormJuego
             rdoButtonBoleto.Checked = false;
 
         }
-
+        /// <summary>
+        /// evento que carga el combo box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormJugar_Load(object sender, EventArgs e)
         {
             foreach (ETipoMoneda item in Enum.GetValues(typeof(ETipoMoneda)))
@@ -54,17 +67,31 @@ namespace FormJuego
             this.cmbBoxAJugar.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbBoxAJugar.SelectedItem = ETipoMoneda.oro;
         }
-
+        /// <summary>
+        /// evento que al darle focus al boton jugar se ponga verde
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIniciativaJugar_Focus(object sender, EventArgs e)
         {
             btnAJugar.BackColor = Color.LawnGreen;
         }
-
+        /// <summary>
+        /// iniciativa que el boton de jugar sea por default el como de la app
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIniciativaDejarJugar_Focus(object sender, EventArgs e)
         {
             btnAJugar.BackColor = Control.DefaultBackColor;
         }
-
+        /// <summary>
+        /// al apretar Jugar en este form se abrira un form ruleta y se armara la partida y los nuevos datos del jugador
+        /// segun si el random perdio o gano. solo se podra abrir un form de ruleta si no existe uno ya corriendo y 
+        /// si todos los datos son correctos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnJugar_Click(object sender, EventArgs e)
         {
             
@@ -166,12 +193,19 @@ namespace FormJuego
             }
  
         }
-
+        /// <summary>
+        /// metodo que inicia el thread
+        /// </summary>
         private void InicioThread()
         {
             this.hilo = new Thread(this.ruleta.spinRoulette);
             hilo.Start();
         }
+        /// <summary>
+        /// manejador de eventos que al lanzarle el stop aborta el hilo y avisa si se gano o se perdio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void spinStop(object sender, EventArgs e)
         {
             if(this.hilo.IsAlive)
@@ -196,14 +230,19 @@ namespace FormJuego
                 }
 
             }
-            
+            ///si no es empty significa que se cerró por closing y ya no es visible, se puede crear otro
+            ///si es empt significa que solo se dio PARARpero sigue visible, no se puede abrir otro
             if(e!=EventArgs.Empty)
             {
                 invoked = false;
             }
             
         }
-
+        /// <summary>
+        /// cuando el radio buton ese checked mostrara si es posible la cantidad de boletos que tiene el usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdioBtnChecked_Click(object sender, EventArgs e)
         {
             string dni = txtBoxIDAJugar.Text;
@@ -217,7 +256,11 @@ namespace FormJuego
                 lblBoletos.Text = "";
             }
         }
-
+        /// <summary>
+        /// verifica que al cambiar el id se limpie la informacion contenida en radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtJugador_NoTrampa(object sender, EventArgs e)
         {
             if(rdoButtonBoleto.Checked)
@@ -226,7 +269,11 @@ namespace FormJuego
                 this.control = !this.control;
             }
         }
-
+        /// <summary>
+        /// al cambiar el id se limpia el radio button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoBtnCambio_Click(object sender, EventArgs e)
         {
            if(!this.control)
@@ -240,7 +287,13 @@ namespace FormJuego
            }
             this.control = !this.control;
         }
-
+        /// <summary>
+        /// al cerrar el form si el hilo sigue vivo y la ruleta form tambien no se puede cerrar
+        /// si cierro este form y el otro esta cerrado se cierra normalmente
+        /// si cierro este form y el form rule sigue visible cierra ambos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClosingJugar_Asegurar(object sender, FormClosingEventArgs e)
         {
             if(this.hilo!=null&& this.hilo.IsAlive)

@@ -17,7 +17,9 @@ namespace Entidades
         private SqlCommand comando;
 
      
-
+        /// <summary>
+        /// establece conexion al master 
+        /// </summary>
         public AccesoDatos()
         {
             string host = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
@@ -25,7 +27,11 @@ namespace Entidades
         }
 
 
- 
+         /// <summary>
+         /// inserta una jugada nueva al ser un nuevo dni, en la base de datos
+         /// </summary>
+         /// <param name="p">juagada</param>
+         /// <returns>true si se agrego</returns>
         public bool InsertarJugada(Jugada p)
         {
             bool todoOk = false;
@@ -67,7 +73,11 @@ namespace Entidades
 
             return todoOk;
         }
-
+        /// <summary>
+        /// modifica jugada de un jugador ya existente, actualiza para ser la ultima
+        /// </summary>
+        /// <param name="p">juagda</param>
+        /// <returns></returns>
         public bool ModificarJuego(Jugada p)
         {
             bool todoOk = false;

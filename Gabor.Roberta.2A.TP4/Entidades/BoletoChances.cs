@@ -14,9 +14,16 @@ namespace Entidades
         #endregion
 
         #region constructores
+        /// <summary>
+        /// construct default
+        /// </summary>
         public BoletoChances()
         {
         }
+        /// <summary>
+        /// constructor al que le paso la cantidad
+        /// </summary>
+        /// <param name="cantidad"></param>
         public BoletoChances(int cantidad)
         {
             this.cantidadBoletos = cantidad;
@@ -32,6 +39,10 @@ namespace Entidades
         #endregion
 
         #region metodos y sobrecargas
+        /// <summary>
+        /// genera un nuevo boleto por casteo
+        /// </summary>
+        /// <param name="i"></param>
         public static explicit operator BoletoChances(int i)
         {
             BoletoChances bx = new BoletoChances();
@@ -39,12 +50,22 @@ namespace Entidades
             return bx;
 
         }
-
+        /// <summary>
+        /// devuelve cuanto se gastó la compra d eboletos
+        /// </summary>
+        /// <param name="b">cantidad de boletos</param>
+        /// <param name="precio">precio de moenda de bronce</param>
+        /// <returns>devuelve cuanto se gastó</returns>
         public static int GastoBoleto(int b,int precio)
         {
             return -(precio * b * 5);
         }
-
+        /// <summary>
+        /// agrega boletos a un jugador solo si este tiene la cantidad de monedas de bronce suficientes para comprar
+        /// </summary>
+        /// <param name="j">jugador</param>
+        /// <param name="b">boletos a comprar</param>
+        /// <returns>Jugador, sino lanza una excepcion</returns>
         public static Jugador operator +(Jugador j, BoletoChances b)
         {
             int cantidadRecuperada=0;
@@ -69,6 +90,12 @@ namespace Entidades
             }
             return j;
         }
+        /// <summary>
+        /// resta cantidad de boletos a un jugador
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Jugador operator -(Jugador j, BoletoChances b)
         {
             j.Boletos.cantidadBoletos -= b.cantidadBoletos;

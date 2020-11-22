@@ -22,7 +22,9 @@ namespace FormRuleta
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Metodo que trabaja en el hilo secundario, haciendo girar una imagen de picBox
+        /// </summary>
         public void spinRoulette()
         {
             Image flipImage = picBoxRuleta.Image;
@@ -39,13 +41,21 @@ namespace FormRuleta
             } while (true);
             
         }
-
+        /// <summary>
+        /// Evento que se lanza al tocar el boton PARAR que lanza otro evento frenacion"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSpinParar_Click(object sender, EventArgs e)
         {
             this.frenacion(frenacion, EventArgs.Empty);
             this.closing = true;
         }
-
+        /// <summary>
+        /// Evento que al cerrar el form desde X, sin haber frenado el hilo tambien lo frene
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClosingForm_Click(object sender, FormClosingEventArgs e)
         {
           if(!this.closing)
