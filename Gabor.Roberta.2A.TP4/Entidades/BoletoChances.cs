@@ -7,7 +7,7 @@ using Excepciones;
 
 namespace Entidades
 {
-    public class BoletoChances/*A TOTAL SCAM*/
+    public class BoletoChances/*A TOTAL SCAM no hace nada mas que robarte plata como la vida misma*/
     {
         #region atributos
         private int cantidadBoletos;

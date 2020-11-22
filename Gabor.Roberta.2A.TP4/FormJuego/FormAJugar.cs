@@ -247,7 +247,11 @@ namespace FormJuego
             {
                 e.Cancel = true;
             }
-            else if(this.ruleta.Visible)//si cuando cierro, el hilo termino, y el form de ruleta sigue abierto se cierra automaticamente
+            else if(this.ruleta==null)//si cuando cierro, el hilo termino, y el form de ruleta sigue abierto se cierra automaticamente
+            {
+               
+            }
+            else
             {
                 this.ruleta.Close();
             }
