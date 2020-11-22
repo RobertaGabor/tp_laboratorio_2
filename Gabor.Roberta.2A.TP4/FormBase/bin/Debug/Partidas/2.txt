@@ -1,2 +1,16 @@
 2, 90, 90, compra
 
+2, 90, 100, compra
+
+2, 90, -100, compra
+
+2, 90, 100, compra
+
+2, 90, -100, compra
+
+2, 0, 45, compra
+
+2, 0, 945, gana
+
+2, 0, -1080, pierde
+

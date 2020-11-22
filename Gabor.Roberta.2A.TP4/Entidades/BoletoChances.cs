@@ -9,23 +9,30 @@ namespace Entidades
 {
     public class BoletoChances/*A TOTAL SCAM*/
     {
+        #region atributos
         private int cantidadBoletos;
+        #endregion
 
+        #region constructores
         public BoletoChances()
         {
-            this.cantidadBoletos = 0;
         }
         public BoletoChances(int cantidad)
         {
             this.cantidadBoletos = cantidad;
         }
+        #endregion
+
+        #region setter y getter serializacion
         public int Cantidad
         {
             get { return this.cantidadBoletos; }
+            set { this.cantidadBoletos = value; }
         }
+        #endregion
 
-
-        public static explicit operator BoletoChances(int i)///ver
+        #region metodos y sobrecargas
+        public static explicit operator BoletoChances(int i)
         {
             BoletoChances bx = new BoletoChances();
             bx.cantidadBoletos = i;
@@ -61,12 +68,12 @@ namespace Entidades
                 throw new insuficienteParaBoletoException();
             }
             return j;
-            //debe tener mas de 5 bronce
         }
         public static Jugador operator -(Jugador j, BoletoChances b)
         {
-            j.Boletos.cantidadBoletos -= 1;
+            j.Boletos.cantidadBoletos -= b.cantidadBoletos;
             return j;
         }
+        #endregion
     }
 }

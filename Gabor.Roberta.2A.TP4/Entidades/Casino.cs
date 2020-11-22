@@ -77,6 +77,43 @@ namespace Entidades
             }
             return aux;
         }
+
+        public static Jugador BuscarJugador(Casino c, int dni)
+        {
+            Jugador aux = null;
+            foreach (Jugador item in c.Jugadores)
+            {
+                if (item.DNI == dni)
+                {
+                    aux = item;
+                    break;
+                }
+            }
+            return aux;
+        }
+        public static Jugador BuscarJugador(Casino c, string dni)
+        {
+            Jugador aux = null;
+            int dniaux;
+            try
+            {
+                dniaux = int.Parse(dni);
+                foreach (Jugador item in c.Jugadores)
+                {
+                    if (item.DNI == dniaux)
+                    {
+                        aux = item;
+                        break;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new dniInvalidoException(e);
+            }
+
+            return aux;
+        }
         #endregion
 
     }

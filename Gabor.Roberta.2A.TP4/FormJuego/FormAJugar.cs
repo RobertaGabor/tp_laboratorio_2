@@ -11,6 +11,7 @@ using Entidades;
 using FormRuleta;
 using System.Threading;
 using Excepciones;
+using System.Media;
 
 namespace FormJuego
 {
@@ -19,8 +20,8 @@ namespace FormJuego
         Thread hilo;
         FormRule ruleta;
         private bool invoked = false;
-        bool control = false;
-        public Jugada segunda=null;//hago getter?
+        private bool control = false;
+        public Jugada segunda=null;
         public Jugador victima;
         private int winLo;
         static Random ganoperdio;
@@ -66,44 +67,40 @@ namespace FormJuego
 
         private void btnJugar_Click(object sender, EventArgs e)
         {
-            //creo jugador auxiliar 
-            //if() si el boton esta checked y no tiene boletos que salte exception
-            int cantidadJ;
             
             if (!invoked)
             {
-                ///if--> chequear que el id este, si esta lo busco en casino jugadores, y traigo todos los datos
-                ///veo que si la cantidad del tipo de moneda que esta apostando coincide
-                ///si tiene apretado boleto y tiene boleto esta bien, sino no puede
-                ///si usa boleto resto boleto
-                
-
                 try
                 {
-                    if ((this.victima = Extension.BuscarJugador(this.ca, txtBoxIDAJugar.Text)) != null)
+                    if ((this.victima = Casino.BuscarJugador(this.ca, txtBoxIDAJugar.Text)) != null)
                     {
                         try
                         {
+                            int cantidadJ;
                             cantidadJ = int.Parse(txtCantidadAJugar.Text);
+
+
                             if(cantidadJ<0)
                             {
                                 throw new FormatException();
                             }
+
                             ETipoMoneda money = (ETipoMoneda)cmbBoxAJugar.SelectedItem;
                             int ganancia = Moneda.SacarGanancia(money);
+                            
                             if (this.victima.CantidadMonedasSegunTipo(money) >= cantidadJ)
                             {
-
-                                //recorrer billetera y buscar la moneda con el mismo tipo, y de ahi sacar su info
                                 if ((rdoButtonBoleto.Checked&&this.victima.Boletos.Cantidad>0)|| rdoButtonBoleto.Checked==false)
                                 {
+                                    /*base del form*/
                                     this.ruleta = new FormRule();
                                     this.ruleta.frenacion += spinStop;
-                                    this.invoked = true;
+                                    this.invoked = true;//si ya se abrio una ruleta y no se cerro de ninguna forma no se puede generar otro form
                                     ruleta.Show();
                                     this.InicioThread();
+                                    /**/
 
-                                    if((rdoButtonBoleto.Checked && this.victima.Boletos.Cantidad > 0))//arreglar
+                                    if((rdoButtonBoleto.Checked && this.victima.Boletos.Cantidad > 0))
                                     {
                                         BoletoChances apuesto = new BoletoChances(1);
                                         this.victima -= apuesto;
@@ -112,19 +109,18 @@ namespace FormJuego
 
                                     Moneda apostada = new Moneda(Moneda.SacarPrecio(money), cantidadJ, money, ganancia);
                                     this.segunda = new Jugada(this.victima);
+                                    
                                     this.winLo = ganoperdio.Next(0, 50);
-                                    if (this.winLo > 35)
+                                    
+                                    if (this.winLo > 35)/*15 veces mas de perder que de ganar*/
                                     {
                                         this.segunda.Varianza = Jugada.CalcularVarianza(apostada, cantidadJ, ETipoTransaccion.gana);
-                                        apostada.Cantidad = apostada.Cantidad * ganancia;//genero las ganancias
-                                        this.victima += apostada;//como ya existe solo suma cantidad
-                                        //sacar saldo y actualizarlo en ganancias
-                                        //poner transaccion gano
+                                        apostada.Cantidad = apostada.Cantidad * ganancia;
+                                        this.victima += apostada;
                                         this.segunda.Movimiento = ETipoTransaccion.gana;
                                     }
                                     else
                                     {
-                                        ///ver que declaraciones uso abajo y aca
                                         this.segunda.Movimiento = ETipoTransaccion.pierde;
                                         this.segunda.Varianza = Jugada.CalcularVarianza(apostada, cantidadJ, ETipoTransaccion.pierde);
                                         this.victima -= apostada;
@@ -182,15 +178,19 @@ namespace FormJuego
             {
 
                 this.hilo.Abort();
-
+                SoundPlayer sp;
                 if(e==EventArgs.Empty)
                 {
-                    if (this.winLo > 35)//mas posibilidades de perder que ganar
+                    if (this.winLo > 35)
                     {
+                        sp = new SoundPlayer("winner.wav");
+                        sp.Play();
                         MessageBox.Show("Ganó");
                     }
                     else
                     {
+                        sp = new SoundPlayer("loser.wav");
+                        sp.Play();
                         MessageBox.Show("Perdió");
                     }
                 }
@@ -199,21 +199,27 @@ namespace FormJuego
             
             if(e!=EventArgs.Empty)
             {
-                //FormClosingEventArgs cerra = new FormClosingEventArgs(CloseReason.None, false);
                 invoked = false;
-                //this.ClosingJugar_Asegurar(sender,cerra);
             }
             
         }
 
         private void rdioBtnChecked_Click(object sender, EventArgs e)
         {
-            //cuando esta checked mostrar cantidad de boletos del jugador
+            string dni = txtBoxIDAJugar.Text;
+            Jugador verBoletos=Casino.BuscarJugador(this.ca, dni);
+            if(verBoletos!=null&&rdoButtonBoleto.Checked==true)
+            {
+                lblBoletos.Text = verBoletos.Boletos.Cantidad.ToString() + " boletos disponibles";
+            }
+            else
+            {
+                lblBoletos.Text = "";
+            }
         }
 
         private void txtJugador_NoTrampa(object sender, EventArgs e)
         {
-            //si boleto esta checked que no me deje cambiar
             if(rdoButtonBoleto.Checked)
             {
                 rdoButtonBoleto.Checked = false;
@@ -230,6 +236,7 @@ namespace FormJuego
            else
            {
                 rdoButtonBoleto.Checked = false;
+                lblBoletos.Text = "";
            }
             this.control = !this.control;
         }
@@ -239,6 +246,10 @@ namespace FormJuego
             if(this.hilo!=null&& this.hilo.IsAlive)
             {
                 e.Cancel = true;
+            }
+            else if(this.ruleta.Visible)//si cuando cierro, el hilo termino, y el form de ruleta sigue abierto se cierra automaticamente
+            {
+                this.ruleta.Close();
             }
 
         }

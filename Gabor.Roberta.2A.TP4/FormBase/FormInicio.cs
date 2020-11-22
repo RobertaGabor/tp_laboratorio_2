@@ -49,7 +49,7 @@ namespace FormBase
                 {
                     this.dtaGridView.DataSource = this.dt;
                     this.dtaGridView.MultiSelect = false;
-                    this.dtaGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//para darle doble click
+                    this.dtaGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 }
                 catch (Exception ex)
                 {
@@ -66,7 +66,7 @@ namespace FormBase
                 }
                 catch
                 {
-
+                    MessageBox.Show("Bienvenido a su primer casino!");
                 }
 
             }
@@ -106,7 +106,6 @@ namespace FormBase
                 {
                     this.empresa += this.comprar.participante;
                     this.empresa += this.comprar.primera;
-                    //agregar jugadas
                     DataRow fila = this.dt.NewRow();
                     this.LlenarFilaComprar(fila);
                     this.dt.Rows.Add(fila);
@@ -115,14 +114,9 @@ namespace FormBase
                     
                     
                 }
-                MessageBox.Show(this.empresa.Jugadores.Count.ToString());
-            }
-            ///si dialog ok : veo si ese participante esta en el casino, si no esta agrego row y a casino
-            ///si esta hago un apdate en ese row de mismo dni, donde sumo la varianza con el saldo, sumo las monedas compradas
-            ///si compro boleto sumo boleto y resto moneda de bronce
-            
+            }  
         }
-        private void LlenarFilaComprar(DataRow fila)///METODO DE EXTENSION INTERFAZ???
+        private void LlenarFilaComprar(DataRow fila)
         {
             fila["dni"] = this.comprar.participante.DNI;
             fila["saldo"] = this.comprar.participante.Saldo;
@@ -162,9 +156,9 @@ namespace FormBase
             int i = this.dtaGridView.SelectedRows[0].Index;
             DataRow fila = this.dt.Rows[i];
             string dni=fila[0].ToString();
-            Jugador buscado=Extension.BuscarJugador(this.empresa, dni);
+            Jugador buscado=Casino.BuscarJugador(this.empresa, dni);
             
-            MessageBox.Show(buscado.ToString());//traer un id de esa fila y recorrer casino lista de jugadores y sacar la cantidad de monedas de ahi.
+            MessageBox.Show(buscado.ToString());
         }
 
         private void ClosingGuardado_FormBase(object sender, FormClosingEventArgs e)
@@ -201,8 +195,6 @@ namespace FormBase
 
                 this.dt.WriteXml(PATH_XML_JUGADAS);
 
-                MessageBox.Show("Se han guardado el esquema y los datos del DataTable!!!");
-
             }
             catch
             {
@@ -219,8 +211,6 @@ namespace FormBase
                 {
                     this.dt = new DataTable();
                     this.dt.ReadXmlSchema(PATH_XML_JUGADAS_SCHEMA);
-
-                    MessageBox.Show("Se ha cargado el esquema del DataTable!!!");
                 }
                 else
                 {
@@ -231,8 +221,6 @@ namespace FormBase
                 if (File.Exists(PATH_XML_JUGADAS))
                 {
                     this.dt.ReadXml(PATH_XML_JUGADAS);
-
-                    MessageBox.Show("Se han cargado los datos del DataTable!!!");
 
                 }
                 else

@@ -2,15 +2,15 @@
 <DocumentElement>
   <jugadas>
     <dni>1</dni>
-    <saldo>140</saldo>
-    <variacion>-20</variacion>
-    <transaccion>pierde</transaccion>
+    <saldo>595</saldo>
+    <variacion>120</variacion>
+    <transaccion>gana</transaccion>
   </jugadas>
   <jugadas>
     <dni>2</dni>
-    <saldo>90</saldo>
-    <variacion>90</variacion>
-    <transaccion>compra</transaccion>
+    <saldo>0</saldo>
+    <variacion>-1080</variacion>
+    <transaccion>pierde</transaccion>
   </jugadas>
   <jugadas>
     <dni>4</dni>

@@ -37,6 +37,7 @@
             this.txtBoxIDJugador = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.lblPregunta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblJugadorId
@@ -119,11 +120,23 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.CancelarCompra_Click);
             // 
+            // lblPregunta
+            // 
+            this.lblPregunta.AutoSize = true;
+            this.lblPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPregunta.Location = new System.Drawing.Point(190, 235);
+            this.lblPregunta.Name = "lblPregunta";
+            this.lblPregunta.Size = new System.Drawing.Size(30, 31);
+            this.lblPregunta.TabIndex = 9;
+            this.lblPregunta.Text = "?";
+            this.lblPregunta.DoubleClick += new System.EventHandler(this.PreguntaPrecio_Click);
+            // 
             // FormComprarMonedas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(244, 324);
+            this.Controls.Add(this.lblPregunta);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtBoxIDJugador);
@@ -154,6 +167,7 @@
         private System.Windows.Forms.TextBox txtBoxIDJugador;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label lblPregunta;
     }
 }
 

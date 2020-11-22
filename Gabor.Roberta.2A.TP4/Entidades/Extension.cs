@@ -7,42 +7,18 @@ using Excepciones;
 
 namespace Entidades
 {
-    public class Extension
+    public static class Extension
     {
-        public static Jugador BuscarJugador(Casino c, int dni)
+        public static string MostrarMonedas(this Casino tipo)
         {
-            Jugador aux = null;
-            foreach (Jugador item in c.Jugadores)
+            StringBuilder sb = new StringBuilder();
+
+            foreach (ETipoMoneda item in Enum.GetValues(typeof(ETipoMoneda)))
             {
-                if (item.DNI==dni)
-                {
-                    aux = item;
-                    break;
-                }
+                sb.Append(item.ToString()+": $");
+                sb.AppendLine(Moneda.SacarPrecio(item).ToString());
             }
-            return aux;
-        }
-        public static Jugador BuscarJugador(Casino c, string dni)
-        {
-            Jugador aux = null;
-            int dniaux;
-            try
-            {
-                dniaux=int.Parse(dni);
-            }
-            catch(Exception e)
-            {
-                throw new dniInvalidoException(e);
-            }
-            foreach (Jugador item in c.Jugadores)
-            {
-                if (item.DNI==dniaux)
-                {
-                    aux = item;
-                    break;
-                }
-            }
-            return aux;
+            return sb.ToString();
         }
     }
 }

@@ -6,3 +6,33 @@
 
 1, 140, -20, pierde
 
+1, 500, 45, compra
+
+1, 500, 315, gana
+
+1, 600, 60, gana
+
+1, 620, -20, pierde
+
+1, 680, 60, gana
+
+1, 660, -20, pierde
+
+1, 720, 60, gana
+
+1, 700, -20, pierde
+
+1, 680, -20, pierde
+
+1, 635, -45, pierde
+
+1, 595, 20, compra
+
+1, 595, 20, compra
+
+1, 595, -100, compra
+
+1, 595, -100, compra
+
+1, 595, 120, gana
+

@@ -9,12 +9,25 @@ namespace Entidades
 {
     public class Moneda
     {
+        #region atributos
         protected ETipoMoneda moneda;
         protected int precio;
         protected int cantidad;
         protected int ganancia;
+        #endregion
 
+        #region constructores
         public Moneda() { }
+        public Moneda(int precio, int canti, ETipoMoneda tipo, int ganancia)
+        {
+            this.precio = precio;
+            this.cantidad = canti;
+            this.moneda = tipo;
+            this.ganancia = ganancia;
+        }
+        #endregion
+
+        #region setter y getters serializacion
         public int Cantidad
         {
             get { return this.cantidad; }
@@ -35,19 +48,10 @@ namespace Entidades
             get { return this.ganancia; }
             set { this.ganancia = value; }
         }
-        public Moneda(int precio,int canti,ETipoMoneda tipo,int ganancia)
-        {
-            this.precio = precio;
-            this.cantidad = canti;
-            this.moneda = tipo;
-            this.ganancia = ganancia;
-        }
-        public Moneda(ETipoMoneda tipo,int cant)//eliminar
-        {
-            this.cantidad = cant;
-            this.moneda = tipo;
-        }
 
+        #endregion
+
+        #region metodos y sobrecargas
         public static Moneda operator +(Moneda m,int numero)
         {
             m.cantidad += numero;
@@ -60,8 +64,8 @@ namespace Entidades
             return m;
 
         }
-
-        public static float SacarSaldo(Moneda e)//si gana gana la ganancia en monedas y eso se traduce en el saldo, si pierde pierde la cantidad apostada nada mas
+        
+        public static float SacarSaldo(Moneda e)
         {
             return e.cantidad * e.precio;
         }
@@ -148,7 +152,7 @@ namespace Entidades
             return cant;
         }
 
-        public static int SacarGanancia(ETipoMoneda tipo)//puedo hacerlos gets sin static
+        public static int SacarGanancia(ETipoMoneda tipo)
         {
             int rtn=0;
             switch(tipo)
@@ -182,6 +186,6 @@ namespace Entidades
             }
             return rtn;
         }
-
+        #endregion
     }
 }
