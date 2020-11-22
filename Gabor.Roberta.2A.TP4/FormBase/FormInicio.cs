@@ -104,7 +104,15 @@ namespace FormBase
                     this.empresa += this.comprar.primera;
                     this.LlenarFilaComprar(fila);
                     this.dt.AcceptChanges();
-                    this.acces.ModificarJuego(this.comprar.primera);
+                    try
+                    {
+                        this.acces.ModificarJuego(this.comprar.primera);
+                    }
+                    catch(Exception)
+                    {
+                        MessageBox.Show("Problemas al conectar con base de datos");
+                    }
+                    
                     
                 }
                 else//si no esta
@@ -115,9 +123,17 @@ namespace FormBase
                     this.LlenarFilaComprar(fila);
                     this.dt.Rows.Add(fila);
                     this.dt.AcceptChanges();
-                    this.acces.InsertarJugada(this.comprar.primera);
-                    
-                    
+                    try
+                    {
+                        this.acces.InsertarJugada(this.comprar.primera);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Problemas al conectar con base de datos");
+                    }
+
+
+
                 }
             }  
         }
