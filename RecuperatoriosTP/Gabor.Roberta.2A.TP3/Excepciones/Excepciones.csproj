@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlumnoRepetido.cs" />
-    <Compile Include="DniInvalido.cs" />
-    <Compile Include="ArchivosE.cs" />
-    <Compile Include="NacionalidadInvalida.cs" />
+    <Compile Include="AlumnoRepetidoException.cs" />
+    <Compile Include="DniInvalidoException.cs" />
+    <Compile Include="ArchivosException.cs" />
+    <Compile Include="NacionalidadInvalidaException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SinProfesor.cs" />
+    <Compile Include="SinProfesorException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

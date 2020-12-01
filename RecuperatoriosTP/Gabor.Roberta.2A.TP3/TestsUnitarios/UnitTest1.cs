@@ -11,7 +11,7 @@ namespace TestsUnitarios
     {
         [TestMethod]
         [ExpectedException(typeof(Excepciones.AlumnoRepetidoException))]
-        public void Agregar_ALumno_Ya_Ingresado()
+        public void TestAgregarALumnoYaIngresado()
         {
             Profesor prof1 = new Profesor(12, "Juan", "Carlos", "23434", Persona.ENacionalidad.Argentino);
             Jornada jorn1 = new Jornada(Universidad.EClases.Laboratorio,prof1);
@@ -26,7 +26,7 @@ namespace TestsUnitarios
 
         [TestMethod]
         [ExpectedException(typeof(Excepciones.NacionalidadInvalidaException))]
-        public void DNI_InvalidoArgentino_Alto()
+        public void TestDNIInvalidoArgentinoAlto()
         {  
             string dniStringPunto = "95.000.555";           
 
@@ -34,7 +34,7 @@ namespace TestsUnitarios
         }
 
         [TestMethod]
-        public void Jornada_InstanciarAlumnos()
+        public void TestJornadaInstanciarAlumnos()
         {
             Jornada jorna1 = new Jornada(Universidad.EClases.Laboratorio, new Profesor(12, "juan", "perez", "1234455", Persona.ENacionalidad.Argentino));
             Assert.IsNotNull(jorna1.Alumnos);
